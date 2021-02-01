@@ -1,0 +1,242 @@
+@import "src/@fuse/scss/fuse";
+
+//HEADER
+#profile-teacher {
+
+    .header-teacher {
+        height: 25vh;
+        min-height: 25vh;
+        max-height: 25vh;
+        background: no-repeat 0 50%;
+        background-size: cover;
+        border-radius: 10px;
+
+        .profile-image {
+            margin-right: 24px;
+
+            @include media-breakpoint('sm') {
+                margin: 0 0 16px 0;
+            }
+        }
+
+        .name {
+            font-size: 34px;
+            color: #FFFFFF;
+
+            @include media-breakpoint('sm') {
+                margin-bottom: 32px;
+            }
+        }
+
+        .actions {
+
+            button {
+                text-transform: none;
+                padding: 0 16px;
+                margin: 0 0 0 8px;
+            }
+        }
+    }
+
+    .content {
+        flex: 1;
+
+        mat-tab-group {
+            height: 100%;
+
+            .mat-tab-body-wrapper {
+                flex-grow: 1;
+            }
+        }
+    }
+}
+
+
+//CONTENT
+app-teacher-view-information {
+
+    #about {
+        //max-width: 1200px;
+
+        .about-content {
+
+            .general {
+
+                .location {
+
+                    mat-icon {
+                        line-height: 13px !important;
+                    }
+                }
+            }
+
+            .work {
+
+                .job {
+
+                    .company {
+                        padding: 0 16px 0 0;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .about-sidebar {
+            padding-left: 32px;
+
+            @include media-breakpoint('sm') {
+                padding: 8px
+            }
+
+            .friends {
+
+                .content {
+
+                    .friend {
+                        padding: 4px;
+
+                        img {
+                            border-radius: 4px;
+                        }
+                    }
+                }
+            }
+
+            .groups {
+
+                .content {
+
+                    .group {
+                        margin-bottom: 24px;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        .logo {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 48px;
+                            height: 48px;
+                            font-size: 21px;
+                            line-height: normal;
+                            border-radius: 50%;
+                            margin-right: 16px;
+                        }
+
+                        .name {
+                            font-weight: 600;
+                            font-size: 15px;
+                        }
+
+                        .members {
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Profile boxes
+    .profile-box {
+        border-radius: 22px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        @include mat-elevation(2);
+
+        .teacher-info-name {
+            white-space: pre-line;
+            word-wrap: break-word;
+            width: 80%;
+        }
+
+        header {
+            padding: 16px;
+
+            .title {
+                font-size: 17px;
+
+                //.button-position {
+                //    bottom: 4px;
+                //}
+                .button-position {
+                    bottom: 4px;
+                    left: 5px;
+                    height: 5px !important;
+                    width: 5px !important;
+                    font-size: 5px !important;
+                }
+            }
+
+            .teacher-page-icon {
+                color: #039be5;
+                margin-top: 2px;
+                margin-left: 10px;
+            }
+
+            .teacher-edit-icon {
+                color: black;
+                margin-top: 2px;
+                margin-left: 10px;
+            }
+
+            .button-create-publication {
+                background-color: #f0f2f5;
+                text-align: left;
+                width: 100%;
+                border-radius: 16px;
+                font-size: 20px;
+            }
+
+            .more {
+                cursor: pointer;
+            }
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        footer {
+            padding: 8px;
+            //background-color: #F5F5F5;
+            //border-top: 1px solid;
+        }
+
+        &.info-box {
+
+            .info-line {
+                margin-bottom: 24px;
+
+                .about-information-area {
+                    margin-bottom: 2rem;
+                    white-space: pre-line;
+                    word-wrap: break-word;
+                }
+
+                .title {
+                    font-size: 15px;
+                    font-weight: 600;
+                    padding-bottom: 4px;
+
+                }
+
+                .info {
+
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+//.about-teacher-text-flex {
+//    word-wrap: break-word;
+//    white-space: pre-line;
+//}

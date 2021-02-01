@@ -1,0 +1,47 @@
+<header fxLayout="row"
+        fxLayoutAlign="space-between start">
+    <div class="user"
+         fxLayout="row"
+         fxLayoutAlign="start center">
+        <a [routerLink]="'/user-information/' + publicationObject.userId">
+            <img class="avatar"
+                 [src]="('/picture/file/' + userId) | secure | async">
+<!--                 [src]="('http://localhost:8700/picture/file/' + userId) | secure | async">-->
+        </a>
+
+        <div fxLayout="column">
+            <a [routerLink]="'/user-information/' + publicationObject.userId">
+                <div class="title">
+                    <span class="username">
+                        {{publicationObject.userName}}
+                    </span>
+                </div>
+            </a>
+            <div class="time">
+                {{publicationObject.publicationDate | date: 'dd MMMM yyyy - hh:mm'}}
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<div class="content">
+    <div class="message border-bottom about-information-area">
+        {{publicationObject.publicationText}}
+    </div>
+
+    <div *ngIf="publicationObject.pictureUrl">
+        <img class="publication-image"
+             [src]="(publicationImgSrc + publicationId + '?' + changePicture) | secure | async">
+    </div>
+
+    <app-publication-like-dislike
+        [publicationId]="publicationId">
+    </app-publication-like-dislike>
+</div>
+
+<!-- COMMENTS -->
+<app-comment-publication-view-list
+    [publicationId]="publicationId">
+</app-comment-publication-view-list>
+<!-- / COMMENTS -->

@@ -1,0 +1,293 @@
+<div *ngIf="searchType === 'all'"
+     id="profile-university"
+     class="page-layout simple tabbed infinity-scroll-following"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="findMoreDataScrolling()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- UNIVERSITY INFORMATION -->
+            <div class="about-content"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="60">
+
+                <!-- UNIVERSITY INFORMATION -->
+                <div class="profile-box info-box general"
+                     fxLayout="column"
+                     style="border-radius: 28px">
+
+                    <!-- SEARCH -->
+                    <div fxLayout="row"
+                         fxLayoutAlign="center center"
+                         fxFlex>
+
+                        <div class="search-wrapper-following-list">
+                            <div class="search"
+                                 fxFlex
+                                 fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <mat-icon>
+                                    search
+                                </mat-icon>
+                                <input [placeholder]="'USER_FOLLOWING_FULL.SEARCH'| translate"
+                                       [(ngModel)]="searchName"
+                                       (keydown.enter)="searchByName()">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- / SEARCH -->
+                </div>
+
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <!-- USER INFORMATION VIEW -->
+                    <div class="content">
+
+                        <div class="group border-bottom"
+                             fxLayout="row"
+                             fxLayoutAlign="space-between center"
+                             *ngFor="let followingUser of followingUserInformationList">
+
+                            <div fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <a [routerLink]="'/user-information/' + followingUser.followedId">
+                                    <div class="logo">
+                                        <img class="avatar"
+                                             [src]="('/picture/file/' + followingUser.followedId) | secure | async">
+<!--                                             [src]="('http://localhost:8700/picture/file/' + followingUser.followedId) | secure | async">-->
+                                    </div>
+                                </a>
+
+                                <div>
+                                    <a [routerLink]="'/user-information/' + followingUser.followedId">
+                                        <div class="name">
+                                            {{followingUser.userLName + ' ' + followingUser.userFName}}
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <app-full-following-action-list [followingUserId]="followingUser.followedId"
+                                                            [userId]="userId"
+                                                            (unFollowUser)="removeUserFromList($event)">
+                            </app-full-following-action-list>
+
+                        </div>
+
+                    </div>
+                    <!-- / USER INFORMATION VIEW -->
+
+                    <div *ngIf="scrollLoaderStat"
+                         class="loader-size-home"
+                         fxLayoutAlign="center center">
+                        <img [src]="'assets/icons/waiting.gif'">
+                    </div>
+
+                </div>
+                <!-- / UNIVERSITY INFORMATION -->
+
+            </div>
+            <!-- / UNIVERSITY INFORMATION -->
+
+            <!-- STATIC INFORMATION CONTENT -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="40">
+
+                <!-- ADVERTISEMENT -->
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header class="content"
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="h2 info-line university-name">
+                            <img src="assets/images/backgrounds/Advertisement.png">
+<!--                            Advertisement-->
+                        </div>
+                    </header>
+
+<!--                    &lt;!&ndash; ADVERTISEMENT INFO &ndash;&gt;-->
+<!--                    <div class="content">-->
+<!--                        Static advertisement information-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; / ADVERTISEMENT INFO &ndash;&gt;-->
+
+                </div>
+                <!-- / ADVERTISEMENT -->
+
+            </div>
+            <!-- / STATIC INFORMATION CONTENT -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+
+<!---->
+<!---->
+<!-- SEARCH -->
+<!---->
+<!---->
+
+<div *ngIf="searchType === 'name'"
+     id="profile-university"
+     class="page-layout simple tabbed infinity-scroll-following"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="searchMoreDataScrolling()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- UNIVERSITY INFORMATION -->
+            <div class="about-content"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="60">
+
+                <!-- UNIVERSITY INFORMATION -->
+                <div class="profile-box info-box general"
+                     fxLayout="column"
+                     style="border-radius: 28px">
+
+                    <!-- SEARCH -->
+                    <div fxLayout="row"
+                         fxLayoutAlign="center center"
+                         fxFlex>
+
+                        <div class="search-wrapper-following-list">
+                            <div class="search"
+                                 fxFlex
+                                 fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <mat-icon>
+                                    search
+                                </mat-icon>
+                                <input [placeholder]="'USER_FOLLOWING_FULL.SEARCH'| translate"
+                                       [(ngModel)]="searchName"
+                                       (keydown.enter)="searchByName()">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- / SEARCH -->
+                </div>
+
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <!-- USER INFORMATION VIEW -->
+                    <div class="content">
+
+                        <div class="group border-bottom"
+                             fxLayout="row"
+                             fxLayoutAlign="space-between center"
+                             *ngFor="let followingUser of followingUserInformationList">
+
+                            <div fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <a [routerLink]="'/user-information/' + followingUser.followedId">
+                                    <div class="logo">
+                                        <img class="avatar"
+                                             [src]="('/picture/file/' + followingUser.followedId) | secure | async">
+<!--                                             [src]="('http://localhost:8700/picture/file/' + followingUser.followedId) | secure | async">-->
+                                    </div>
+                                </a>
+
+                                <div>
+                                    <a [routerLink]="'/user-information/' + followingUser.followedId">
+                                        <div class="name">
+                                            {{followingUser.userLName + ' ' + followingUser.userFName}}
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <app-full-following-action-list [followingUserId]="followingUser.followedId"
+                                                            [userId]="userId"
+                                                            (unFollowUser)="removeUserFromList($event)">
+                            </app-full-following-action-list>
+
+                        </div>
+
+                    </div>
+                    <!-- / USER INFORMATION VIEW -->
+
+                    <div *ngIf="scrollLoaderStat"
+                         class="loader-size-home"
+                         fxLayoutAlign="center center">
+                        <img [src]="'assets/icons/waiting.gif'">
+                    </div>
+
+                </div>
+                <!-- / UNIVERSITY INFORMATION -->
+
+            </div>
+            <!-- / UNIVERSITY INFORMATION -->
+
+            <!-- STATIC INFORMATION CONTENT -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="40">
+
+                <!-- ADVERTISEMENT -->
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header class="content"
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="h2 info-line university-name">
+                            <img src="assets/images/backgrounds/Advertisement.png">
+<!--                            Advertisement-->
+                        </div>
+                    </header>
+
+<!--                    &lt;!&ndash; ADVERTISEMENT INFO &ndash;&gt;-->
+<!--                    <div class="content">-->
+<!--                        Static advertisement information-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; / ADVERTISEMENT INFO &ndash;&gt;-->
+
+                </div>
+                <!-- / ADVERTISEMENT -->
+
+            </div>
+            <!-- / STATIC INFORMATION CONTENT -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

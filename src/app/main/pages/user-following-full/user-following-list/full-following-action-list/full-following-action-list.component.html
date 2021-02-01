@@ -1,0 +1,29 @@
+<div *ngIf="myProfileStat">
+
+    <!--    <button mat-raised-button-->
+    <!--            *ngIf="!universityUser"-->
+    <!--            (click)="sendMessage()">-->
+    <!--        Send Message-->
+    <!--    </button>-->
+    <!--    <span>-->
+    <!--        &nbsp;-->
+    <!--    </span>-->
+    <button mat-icon-button
+            [matTooltip]="'USER_FOLLOWING_FULL.UNFOLLOW'| translate"
+            (click)="unFollowToUser()">
+        <mat-icon>
+            delete
+        </mat-icon>
+    </button>
+
+</div>
+
+<!-- FOR OTHER USERS -->
+<div *ngIf="!myProfileStat">
+    <a [routerLink]="'/user-information/' + followingUserId">
+        <button mat-raised-button>
+            {{'USER_FOLLOWING_FULL.USER_PROFILE'| translate}}
+        </button>
+    </a>
+</div>
+<!-- / FOR OTHER USERS -->

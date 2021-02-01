@@ -1,0 +1,77 @@
+<!--<div class="h2">-->
+<!--    {{teacherInformationObject.lastName + ' ' + teacherInformationObject.firstName}}-->
+<!--</div>-->
+
+<!--<div class="h1 border-top main-text-area">-->
+<!--    <div class="main-text">-->
+<!--        <span>-->
+<!--            {{'UNIVERSITY_TEACHER.REMOVE'| translate}}-->
+<!--        </span>-->
+<!--        <span class="teacher-name">-->
+<!--            {{'- ' + teacherInformationObject.lastName + ' ' + teacherInformationObject.firstName + '?'}}-->
+<!--        </span>-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div fxLayoutAlign="end end">-->
+<!--        <button mat-raised-button-->
+<!--                (click)="activeModal.close()">-->
+<!--            {{'UNIVERSITY_TEACHER.CANCEL'| translate}}-->
+<!--        </button>-->
+<!--        <span>-->
+<!--            &nbsp;-->
+<!--        </span>-->
+<!--        <button mat-raised-button-->
+<!--                class="primary"-->
+<!--                (click)="activeModal.close('Remove')">-->
+<!--            {{'UNIVERSITY_TEACHER.REMOVE'| translate}}-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!---->
+<!---->
+<!---->
+<!---->
+
+<div class="fuse-widget-front">
+
+    <div class="pb-16 wrapper border-bottom">
+        <div class="h2 secondary-text title">
+            <strong>
+                {{teacherInformationObject.lastName + ' ' + teacherInformationObject.firstName}}
+            </strong>
+        </div>
+    </div>
+    <br>
+
+    <div class="message-box info">
+        <span>
+            {{'UNIVERSITY_TEACHER.REMOVE'| translate}}
+        </span>
+        <span class="teacher-name">
+            {{'- ' + teacherInformationObject.lastName + ' ' + teacherInformationObject.firstName + '?'}}
+        </span>
+    </div>
+
+    <br>
+
+    <div fxLayout="row"
+         fxLayoutAlign="end">
+        <div>
+            <button mat-button
+                    (click)="activeModal.close()">
+                {{'UNIVERSITY_TEACHER.CANCEL'| translate}}
+            </button>
+            <span>
+                &nbsp;
+            </span>
+            <button mat-raised-button
+                    class="accent"
+                    (click)="activeModal.close('Remove')">
+                {{'UNIVERSITY_TEACHER.REMOVE'| translate}}
+            </button>
+        </div>
+
+    </div>
+
+</div>

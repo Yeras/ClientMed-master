@@ -1,0 +1,310 @@
+<!-- EDIT USER EDUCATION INFO1 -->
+<div *ngIf="!editEducation && myProfileStat"
+     class="actions"
+     fxLayout="row"
+     [@animate]="{value:'*',params:{delay:'200ms'}}">
+
+    <!-- EDIT USER EDUCATION INFO2 -->
+    <div class="group">
+
+        <div>
+            <!-- COUNTRY SELECTOR -->
+            <div>
+                <span>&nbsp;</span>
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.COUNTRY'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="userEducationObject.countryId"
+                                [value]="userEducationObject.countryId"
+                                (selectionChange)="getCityByCountry($event.value)">
+                        <div *ngFor="let country of countryList">
+                            <mat-option [value]="country.id">
+                                {{country.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix class="secondary-text">
+                        public
+                    </mat-icon>
+                </mat-form-field>
+                <!-- / COUNTRY SELECTOR -->
+
+                <span>&nbsp;</span>
+
+                <!-- CITY SELECTOR -->
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.CITY'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="userEducationObject.cityId"
+                                [value]="userEducationObject.cityId"
+                                (selectionChange)="getUniversityByCity($event.value)">
+                        <div *ngFor="let city of cityList">
+                            <mat-option [value]="city.id">
+                                {{city.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        location_city
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+            <!-- / CITY SELECTOR -->
+
+            <!-- UNIVERSITY SELECTOR -->
+            <div>
+                <span>&nbsp;</span>
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.UNIVERSITY'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="userEducationObject.universityId"
+                                [value]="userEducationObject.universityId">
+                        <div *ngFor="let university of universityList">
+                            <mat-option [value]="university.id">
+                                {{university.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        school
+                    </mat-icon>
+                </mat-form-field>
+                <!-- / UNIVERSITY SELECTOR -->
+
+                <!-- FACULTY SELECTOR -->
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.FACULTY'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="userEducationObject.facultyId"
+                                [value]="userEducationObject.facultyId"
+                                (selectionChange)="getSpecialtyByFaculty($event.value)">
+                        <div *ngFor="let faculty of facultyList">
+                            <mat-option [value]="faculty.id">
+                                {{faculty.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        nature_people
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+            <!-- / FACULTY SELECTOR -->
+
+            <!-- DEGREE -->
+            <div>
+                <span>&nbsp;</span>
+                <!-- SPECIALTY SELECTOR -->
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.SPECIALTY'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="userEducationObject.specialtyId"
+                                [value]="userEducationObject.specialtyId">
+                        <div *ngFor="let specialty of specialtyList">
+                            <mat-option [value]="specialty.id">
+                                {{specialty.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        class
+                    </mat-icon>
+                </mat-form-field>
+
+                <!--                <span>&nbsp;</span>-->
+
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.DEGREE'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="userEducationObject.degreeId"
+                                [value]="userEducationObject.degreeId">
+                        <div *ngFor="let degree of degreeList">
+                            <mat-option [value]="degree.id">
+                                {{degree.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        recent_actors
+                    </mat-icon>
+                </mat-form-field>
+                <!-- / DEGREE -->
+
+
+            </div>
+            <!-- / SPECIALTY SELECTOR -->
+
+            <!-- ENTER UNIVERSITY DATE -->
+            <div>
+                <span>&nbsp;</span>
+                <mat-form-field appearance="outline"
+                                class="mat-form-date-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.CHOOSE_ENTER_DATE'| translate}}
+                    </mat-label>
+                    <input matInput
+                           [matDatepicker]="picker1"
+                           [(ngModel)]="userEducationObject.enter"
+                           [value]="userEducationObject.enter">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="picker1">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1>
+                    </mat-datepicker>
+                    {{userEducationObject.enter | date: 'dd MMMM yyyy'}}
+                </mat-form-field>
+            </div>
+            <!-- / ENTER UNIVERSITY DATE -->
+
+            <!-- FINISH UNIVERSITY DATE -->
+            <div>
+                <span>&nbsp;</span>
+                <mat-form-field appearance="outline"
+                                class="mat-form-date-info">
+                    <mat-label>
+                        {{'USER_INFORMATION_USER_VIEW.CHOOSE_FINISH_DATE'| translate}}
+                    </mat-label>
+                    <input matInput
+                           [matDatepicker]="picker2"
+                           [(ngModel)]="userEducationObject.finish"
+                           [value]="userEducationObject.finish">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="picker2">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker2>
+                    </mat-datepicker>
+                    {{userEducationObject.finish | date: 'dd MMMM yyyy'}}
+                </mat-form-field>
+            </div>
+            <!-- / FINISH UNIVERSITY DATE -->
+
+        </div>
+    </div>
+    <!-- / EDIT USER EDUCATION INFO2 -->
+
+</div>
+<div class="group"
+     fxLayout="row"
+     fxLayoutAlign="end"
+     *ngIf="editEducation !== true && myProfileStat === true">
+    <button mat-button
+            (click)="cancelEducation()">
+        {{'USER_INFORMATION_USER_VIEW.CANCEL'| translate}}
+    </button>
+    <span>&nbsp;</span>
+    <button mat-raised-button
+            color="primary"
+            *ngIf="userEducationObject.id !== null && userEducationObject.id !== 0"
+            (click)="deleteEducation(userEducationObject.id)">
+        {{'USER_INFORMATION_USER_VIEW.DELETE'| translate}}
+    </button>
+    <span>&nbsp;</span>
+    <button mat-raised-button
+            color="accent"
+            (click)="saveEducation()">
+        {{'USER_INFORMATION_USER_VIEW.SAVE'| translate}}
+    </button>
+</div>
+<!-- / EDIT USER EDUCATION INFO1 -->
+
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+
+<!-- VIEW INFORMATION -->
+<div fxLayout="row"
+     fxLayoutAlign="start center"
+     *ngIf="editEducation">
+
+    <div class="logo">
+        <a [routerLink]="'/user-information/' + userEducationObject.universityPictureId">
+            <img class="avatar"
+                 [src]="('/picture/file/' + userEducationObject.universityPictureId) | secure | async">
+<!--                 [src]="('http://localhost:8700/picture/file/' + userEducationObject.universityPictureId) | secure | async">-->
+        </a>
+    </div>
+
+    <div>
+        <a [routerLink]="'/user-information/' + userEducationObject.universityPictureId">
+            <div class="name">
+                <span *ngIf="universityName !== null">
+                    {{universityName}}
+                </span>
+            </div>
+        </a>
+
+        <div class="category">
+            <span>
+                {{countryName + ' - ' + cityName}}
+            </span>
+        </div>
+
+        <span *ngIf="facultyName !== null || degreeName !== null || userEducationObject.enter !== null">
+            <br>
+        </span>
+
+        <div class="members">
+            <span *ngIf="facultyName !== null">
+                    {{facultyName}}
+            </span>
+            <span *ngIf="specialtyName !== null">
+                {{'- ' + specialtyName}}
+            </span>
+        </div>
+        <div class="members">
+            <span *ngIf="degreeName !== null && userEducationObject.enter !== null">
+                    {{degreeName + ','}}
+            </span>
+            <span *ngIf="degreeName !== null && userEducationObject.enter == null">
+                {{degreeName}}
+            </span>
+            <!-- ENTER AND FINISH DATE -->
+            <span *ngIf="userEducationObject.enter !== null">
+                    {{userEducationObject.enter | date: 'dd MMMM yyyy'}}
+            </span>
+            <span *ngIf="userEducationObject.enter !== null && userEducationObject.finish !== null">
+                    {{'- '}}
+            </span>
+            <span *ngIf="userEducationObject.finish !== null">
+                    {{userEducationObject.finish | date: 'dd MMMM yyyy'}}
+            </span>
+            <!-- / ENTER AND FINISH DATE -->
+        </div>
+
+    </div>
+</div>
+<!-- VIEW INFORMATION -->
+
+<div fxLayoutAlign="end"
+     style="margin-right: 50px;">
+    <button mat-icon-button
+            color="primary"
+            aria-label="Edit"
+            *ngIf="myProfileStat && editEducation"
+            (click)="editEducation = !editEducation">
+        {{'USER_INFORMATION_USER_VIEW.CHANGE'| translate}}
+        <mat-icon>
+            edit
+        </mat-icon>
+    </button>
+</div>
+<hr>

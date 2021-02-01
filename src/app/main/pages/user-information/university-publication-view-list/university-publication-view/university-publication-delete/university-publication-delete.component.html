@@ -1,0 +1,44 @@
+<div class="fuse-widget-front">
+
+    <div class="pb-16 wrapper border-bottom">
+        <div class="h2 secondary-text title">
+            <strong>
+                {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.DELETE_PUBLICATION'| translate}}
+            </strong>
+        </div>
+        <div class="icon-cls">
+            <button mat-icon-button
+                    class="m-0 mr-16 secondary-text button-position"
+                    (click)="activeModal.close()">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+        </div>
+    </div>
+    <br>
+
+    <div class="message-box info">
+        <span>
+            {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.ARE_YOU_SURE_DELETE_PUBLICATION'| translate}}
+        </span>
+    </div>
+    <br>
+
+    <div fxLayout="row"
+         fxLayoutAlign="end">
+        <div>
+
+            <button mat-button
+                    (click)="activeModal.close()">
+                {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.CLOSE'| translate}}
+            </button>
+            <span>&nbsp;</span>
+            <button mat-raised-button
+                    class="accent"
+                    (click)="deletePublication()">
+                {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.DELETE'| translate}}
+            </button>
+        </div>
+    </div>
+</div>

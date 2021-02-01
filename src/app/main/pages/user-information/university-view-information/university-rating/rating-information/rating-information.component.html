@@ -1,0 +1,163 @@
+<div *ngIf="gradeInformation">
+    <div>
+        <span class="h2">
+            1) You can choose static grade: "A", "A-", "B+" and ...
+        </span>
+        <br>
+        <br>
+    </div>
+    <div>
+        <span class="h2">
+            2) You can choose custom grade: 100%, 90%, 80%, 70% and ...
+        </span>
+    </div>
+    <br>
+
+    <!-- BUTTON LIST-->
+    <div class="actions"
+         fxLayout="row"
+         fxLayoutAlign="end center"
+         [@animate]="{value:'*',params:{delay:'200ms'}}">
+
+        <button mat-raised-button
+                [matMenuTriggerFor]="menu"
+                aria-label="More">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item
+                    (click)="openGradeInformation()">
+                <mat-icon>
+                    lock
+                </mat-icon>
+                Grade Detail
+            </button>
+            <button mat-menu-item
+                    (click)="openCustomGradeInformation()">
+                <mat-icon>
+                    lock_open
+                </mat-icon>
+                Custom Grade Detail
+            </button>
+        </mat-menu>
+    </div>
+    <!-- / BUTTON LIST-->
+
+</div>
+
+<div *ngIf="gradeDetail">
+    <div>
+        <button mat-icon-button
+                (click)="backToMainInfoPage()">
+            <mat-icon>
+                arrow_back_ios
+            </mat-icon>
+        </button>
+        <span>
+            Grade Detail
+        </span>
+    </div>
+    <div>
+        <span>
+            Grade Detail - It's grade, which you can choose.
+        </span>
+    </div>
+    <div>
+        <span>
+            It means that you choose grade, and system automatically change your grade to points.
+        </span>
+    </div>
+    <br>
+    <div>
+        <span>
+            Grade equivalent:
+        </span>
+
+        <!-- DATA -->
+        <mat-table [dataSource]="gradeSystemList">
+
+            <!-- GRADE NAME -->
+            <ng-container matColumnDef="gradeName">
+                <mat-header-cell *matHeaderCellDef>Grade</mat-header-cell>
+                <mat-cell *matCellDef="let gradeSystem">
+                    <p class="text-truncate font-weight-600">{{gradeSystem.gradeName}}</p>
+                </mat-cell>
+            </ng-container>
+            <!-- / GRADE NAME -->
+
+            <!-- GRADE POINT -->
+            <ng-container matColumnDef="points">
+                <mat-header-cell *matHeaderCellDef>Equivalent Point</mat-header-cell>
+                <mat-cell *matCellDef="let gradeSystem">
+                    <p class="text-truncate font-weight-600">{{gradeSystem.points + '%'}}</p>
+                </mat-cell>
+            </ng-container>
+            <!-- / GRADE POINT -->
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let gradeSystem; columns: displayedColumns"
+                     class="user"
+                     [@animate]="{value:'*', params:{y:'100%'}}">
+            </mat-row>
+
+        </mat-table>
+        <!-- / DATA -->
+
+    </div>
+
+</div>
+
+<div *ngIf="customGradeDetail">
+    <div>
+        <button mat-icon-button
+                (click)="backToMainInfoPage()">
+            <mat-icon>
+                arrow_back_ios
+            </mat-icon>
+        </button>
+        <span>
+            Custom Grade Detail
+        </span>
+    </div>
+    <div>
+        <span>
+            Custom Grade Detail - It's grade, which you can put your self.
+        </span>
+        <br>
+        <br>
+    </div>
+    <div>
+        <span>
+            For example, you can put points between
+            <span class="accent">
+                (1 - 100)
+            </span>
+        </span>
+        <br>
+    </div>
+    <div>
+        <span>
+            If you choose static grade, you can put only static points
+        </span>
+        <br>
+    </div>
+    <div>
+        <span>
+            In custom grade, you can choose another, not
+            <span class="accent">
+                95
+            </span>
+            or
+            <span class="accent">
+                85
+            </span>,
+            you can choose
+            <span class="accent">
+                89
+            </span>
+            or another
+        </span>
+    </div>
+</div>

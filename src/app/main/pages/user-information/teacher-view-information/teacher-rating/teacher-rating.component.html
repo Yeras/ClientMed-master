@@ -1,0 +1,161 @@
+<div *ngIf="!gradeState"
+     fxLayout="column">
+
+    <div class="group border-bottom"
+         fxLayout="row">
+
+        <div class="logo">
+            <img class="avatar"
+                 [src]="('/picture/file/' + this.teacherId) | secure | async">
+<!--                 [src]="('http://localhost:8700/picture/file/' + this.teacherId) | secure | async">-->
+        </div>
+
+        <div>
+            <div class="name">
+                {{'USER_INFORMATION_TEACHER_VIEW.TEACHER_GRADE'| translate}}
+            </div>
+            <div class="category">
+                {{gradeObject.gradeName + ' = ' + gradeObject.points + '%'}}
+            </div>
+            <div class="members">
+                <span class="message-to-me">
+                    <abbr [title]="'USER_INFORMATION_TEACHER_VIEW.LIST_OF_GRADE.'| translate">
+                        {{('USER_INFORMATION_TEACHER_VIEW.VOICE'| translate) + gradeObject.userList}}
+                    </abbr>
+                 </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="!chooseGrade">
+
+        <div fxLayoutAlign="center center">
+            <dl>
+                <dt>
+                    {{'USER_INFORMATION_TEACHER_VIEW.TEACHER_GRADE'| translate}}
+                </dt>
+                <dd>
+                    {{'USER_INFORMATION_TEACHER_VIEW.USER_GRADE_FOR_CHOOSING'| translate}}
+                </dd>
+            </dl>
+        </div>
+
+
+        <div fxLayoutAlign="end end">
+            <button mat-button
+                    class="accent"
+                    (click)="chooseStatic()">
+                {{'USER_INFORMATION_TEACHER_VIEW.STATIC_GRADE'| translate}}
+            </button>
+            <span>
+                &nbsp;
+            </span>
+            <span>
+                &nbsp;
+            </span>
+            <button mat-button
+                    class="accent"
+                    (click)="chooseCustom()">
+                {{'USER_INFORMATION_TEACHER_VIEW.CUSTOM_GRADE'| translate}}
+            </button>
+        </div>
+
+    </div>
+
+    <div *ngIf="chooseGrade">
+        <app-teacher-rating-choose [teacherId]="teacherId"
+                                   [typeOfGrade]="typeOfGrade"
+                                   (backToInformation)="backFromGradeChoose()">
+        </app-teacher-rating-choose>
+    </div>
+
+</div>
+
+<div *ngIf="gradeState">
+
+    <div class="group border-bottom"
+         fxLayout="row">
+
+        <div class="logo">
+            <img class="avatar"
+                 [src]="('/picture/file/' + this.teacherId) | secure | async">
+<!--                 [src]="('http://localhost:8700/picture/file/' + this.teacherId) | secure | async">-->
+        </div>
+
+        <div>
+            <div class="name">
+                {{'USER_INFORMATION_TEACHER_VIEW.TEACHER_GRADE'| translate}}
+            </div>
+            <div class="category">
+                {{gradeObject.gradeName + ' = ' + gradeObject.points + '%'}}
+            </div>
+            <div class="members">
+                <span class="message-to-me">
+                    <abbr [title]="'USER_INFORMATION_TEACHER_VIEW.LIST_OF_GRADE'| translate">
+                        {{('USER_INFORMATION_TEACHER_VIEW.VOICE'| translate) + gradeObject.userList}}
+                    </abbr>
+                 </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div fxLayoutAlign="center center">
+        <dl>
+            <dt>
+                {{'USER_INFORMATION_TEACHER_VIEW.GRADE_LIST'| translate}}
+            </dt>
+            <dd>
+                {{'USER_INFORMATION_TEACHER_VIEW.GRADE_EQUIVALENT'| translate}}
+            </dd>
+            <dd>
+                {{'USER_INFORMATION_TEACHER_VIEW.GRADE_IS_CALCULATE'| translate}}
+            </dd>
+        </dl>
+    </div>
+
+    <div class="grade-list-content"
+         fusePerfectScrollbar>
+        <!-- DATA -->
+        <mat-table [dataSource]="gradeSystemList">
+
+            <!-- GRADE NAME -->
+            <ng-container matColumnDef="gradeName">
+                <mat-header-cell *matHeaderCellDef>
+                    {{'USER_INFORMATION_TEACHER_VIEW.GRADE'| translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let gradeSystem">
+                    <p class="text-truncate font-weight-600">
+                        {{gradeSystem.gradeName}}
+                    </p>
+                </mat-cell>
+            </ng-container>
+            <!-- / GRADE NAME -->
+
+            <!-- GRADE POINT -->
+            <ng-container matColumnDef="points">
+                <mat-header-cell *matHeaderCellDef>
+                    {{'USER_INFORMATION_TEACHER_VIEW.EQUIVALENT_POINT'| translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let gradeSystem">
+                    <p class="text-truncate font-weight-600">
+                        {{gradeSystem.points + '% <='}}
+                    </p>
+                </mat-cell>
+            </ng-container>
+            <!-- / GRADE POINT -->
+
+            <mat-header-row *matHeaderRowDef="displayedColumns">
+            </mat-header-row>
+
+            <mat-row *matRowDef="let gradeSystem; columns: displayedColumns"
+                     class="user"
+                     [@animate]="{value:'*', params:{y:'100%'}}">
+            </mat-row>
+
+        </mat-table>
+        <!-- / DATA -->
+    </div>
+
+</div>

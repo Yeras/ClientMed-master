@@ -1,0 +1,88 @@
+<div class="fuse-widget-front">
+
+    <div class="pb-16 wrapper">
+        <div class="h2 secondary-text title">
+            <strong>
+                {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.CREATE_PUBLICATION'| translate}}
+            </strong>
+        </div>
+        <div class="icon-cls">
+            <button mat-icon-button
+                    class="m-0 mr-16 secondary-text button-position"
+                    (click)="activeModal.close()">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="border-top textarea-content"
+         fusePerfectScrollbar
+         fxLayout="column">
+
+        <textarea matInput
+                  name="publication"
+                  [placeholder]="'USER_INFORMATION_UNIVERSITY_PUBLICATION.PUBLICATION_TEXT'| translate"
+                  [(ngModel)]="newsPublicationObject.publicationText">
+        </textarea>
+
+        <!-- VIEW PICTURE -->
+        <div class="pb-16 wrapper"
+             *ngIf="previewImg">
+            <div class="icon-cls">
+                <button mat-icon-button
+                        class="m-0 mr-16 secondary-text button-position icon-remove-color"
+                        (click)="cancelPicture()">
+                    <mat-icon>
+                        close
+                    </mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <img *ngIf="previewImg"
+             [src]="previewImg">
+        <!-- / VIEW PICTURE -->
+
+        <br>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+    <div fxLayout="row"
+         fxLayoutAlign="end"
+         class="main-content">
+        <!-- UPLOAD PICTURE -->
+        <input
+            hidden
+            type="file"
+            #uploader
+            (change)="selectFile($event)"
+            accept="image/*"/>
+        <button mat-icon-button
+                class="choose-picture-green"
+                (click)="uploader.click()">
+            <mat-icon>
+                insert_photo
+            </mat-icon>
+        </button>
+        <span>&nbsp;</span>
+        <!--            <button mat-icon-button-->
+        <!--                    class="choose-link-orange">-->
+        <!--                <mat-icon>-->
+        <!--                    insert_link-->
+        <!--                </mat-icon>-->
+        <!--            </button>-->
+        <!-- / UPLOAD PICTURE -->
+        <span>&nbsp;</span>
+        <button mat-raised-button
+                color="accent"
+                [disabled]="!newsPublicationObject.publicationText && !currentFileUpload"
+                (click)="saveDataFileProfile()">
+            {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.SAVE'| translate}}
+        </button>
+    </div>
+</div>

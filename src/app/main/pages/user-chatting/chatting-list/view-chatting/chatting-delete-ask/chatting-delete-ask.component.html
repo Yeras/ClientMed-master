@@ -1,0 +1,85 @@
+<!--<div fxLayout="row"-->
+<!--     class="h2 pb-16 secondary-text title modal-content modal-header border-bottom">-->
+<!--    {{'USER_CHATTING.DELETE_CHAT'| translate}}-->
+<!--    <br>-->
+<!--</div>-->
+<!--<div class="fuse-widget-front">-->
+<!--    <div class="pb-16">-->
+<!--        <div class="h2 secondary-text title">-->
+<!--            <strong>-->
+<!--                {{'USER_CHATTING.DELETE_CHAT'| translate}}-->
+<!--            </strong>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;<div class="modal-body">&ndash;&gt;-->
+<!--<div class="message-box info">-->
+<!--    <p>-->
+<!--        {{'USER_CHATTING.ARE_YOU_SURE_DELETE'| translate}}-->
+<!--    </p>-->
+<!--</div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--<br>-->
+
+<!--<div fxLayout="row"-->
+<!--     fxLayoutAlign="end end">-->
+<!--    <button mat-button-->
+<!--            (click)="matDialogRef.close()">-->
+<!--        {{'USER_CHATTING.CLOSE'| translate}}-->
+<!--    </button>-->
+
+<!--    <span>-->
+<!--        &nbsp;-->
+<!--    </span>-->
+
+<!--    <button mat-raised-button-->
+<!--            class="accent"-->
+<!--            (click)="matDialogRef.close('Delete')">-->
+<!--        {{'USER_CHATTING.DELETE'| translate}}-->
+<!--    </button>-->
+<!--</div>-->
+
+<!---->
+<!---->
+<!---->
+<!---->
+<div class="fuse-widget-front">
+
+    <div class="pb-16 wrapper border-bottom">
+        <div class="h2 secondary-text title">
+            <strong>
+                {{'USER_CHATTING.DELETE_CHAT'| translate}}
+            </strong>
+        </div>
+    </div>
+    <br>
+
+    <div class="message-box info">
+        <span>
+            {{'USER_CHATTING.ARE_YOU_SURE_DELETE'| translate}}
+        </span>
+    </div>
+    <br>
+
+    <div fxLayout="row"
+         fxLayoutAlign="end">
+        <div>
+            <button mat-button
+                    (click)="matDialogRef.close()">
+                {{'USER_CHATTING.CLOSE'| translate}}
+            </button>
+            <span>
+                &nbsp;
+            </span>
+            <button mat-raised-button
+                    class="accent"
+                    (click)="matDialogRef.close('Delete')">
+                {{'USER_CHATTING.DELETE'| translate}}
+            </button>
+        </div>
+
+    </div>
+
+</div>

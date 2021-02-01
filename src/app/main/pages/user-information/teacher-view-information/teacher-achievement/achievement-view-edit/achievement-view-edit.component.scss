@@ -1,0 +1,54 @@
+.mat-form-string-info {
+    width: 20vh;
+}
+
+.mat-form-date-info {
+    width: 30vh;
+}
+
+.content-achievement-info {
+
+    //width: 60%;
+
+    .achievement-name {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .about-achievement-area {
+        margin-bottom: 2rem;
+        white-space: pre-line;
+        word-wrap: break-word;
+    }
+}
+
+.group {
+    margin-bottom: 24px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+        line-height: normal;
+        border-radius: 50%;
+        margin-right: 16px;
+    }
+
+    .name {
+        font-weight: 600;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .members {
+        margin-top: 8px;
+    }
+
+}

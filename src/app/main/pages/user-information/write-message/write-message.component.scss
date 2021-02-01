@@ -1,0 +1,48 @@
+@import "src/@fuse/scss/fuse";
+
+textarea {
+    width: 100% !important;
+    //max-height: 24vh;
+    //min-height: 24vh;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.textarea-content {
+    //height: 10vh;
+    //max-height: 32vh;
+}
+
+
+.profile-image {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrapper {
+    display: flex;
+
+}
+
+.secondary-text {
+    flex: 1
+}
+
+.icon-cls {
+    flex: 1;
+    text-align: right;
+
+    .icon-remove-color {
+        color: black;
+    }
+}
+
+.button-position {
+    top: -9px;
+}
+
+.title {
+    font-size: 17px;
+}
+

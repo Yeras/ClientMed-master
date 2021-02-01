@@ -1,0 +1,299 @@
+<!-- EDIT EDIT NEW ACHIEVEMENT -->
+<div *ngIf="teacherAchievementId === 0 && achievementStat"
+     class="actions"
+     fxLayout="row"
+     [@animate]="{value:'*',params:{delay:'200ms'}}">
+
+    <div class="group">
+
+        <form fxLayout="column"
+              fxLayoutAlign="start"
+              fxFlex="1 0 auto"
+              name="form"
+              [formGroup]="form">
+
+            <!-- ACHIEVEMENT SELECTOR -->
+            <div>
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info"
+                                fxFlex="100">
+                    <mat-label>
+                        {{'USER_INFORMATION_TEACHER_VIEW.ACHIEVEMENT_TYPE'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="teacherAchievementObject.achievementId"
+                                [value]="teacherAchievementObject.achievementId"
+                                formControlName="achievement">
+                        <div *ngFor="let achievement of achievementInfoList">
+                            <mat-option [value]="achievement.id">
+                                {{achievement.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        stars
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+            <!-- / ACHIEVEMENT SELECTOR -->
+
+            <!-- ACHIEVEMENT DESCRIPTION -->
+            <div fxLayout="row"
+                 fxLayoutAlign="start center"
+                 fxFlex="1 0 auto">
+                <mat-form-field appearance="outline"
+                                fxFlex="100"
+                                class="pr-4">
+                    <mat-label>
+                        {{'USER_INFORMATION_TEACHER_VIEW.ABOUT_ACHIEVEMENT'| translate}}
+                    </mat-label>
+                    <textarea matInput
+                              formControlName="description"
+                              required
+                              [(ngModel)]="teacherAchievementObject.achievementDescription"
+                              [value]="teacherAchievementObject.achievementDescription">
+                    </textarea>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        description
+                    </mat-icon>
+                    <mat-error>
+                        {{'USER_INFORMATION_TEACHER_VIEW.DESCRIPTION_IS_REQUIRED'| translate}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- / ACHIEVEMENT DESCRIPTION -->
+
+            <!-- ACHIEVEMENT DATE -->
+            <div>
+                <mat-form-field appearance="outline"
+                                class="mat-form-date-info"
+                                fxFlex="100">
+                    <mat-label>
+                        {{'USER_INFORMATION_TEACHER_VIEW.CHOOSE_DATE'| translate}}
+                    </mat-label>
+                    <input matInput
+                           formControlName="achievementDate"
+                           [matDatepicker]="picker1"
+                           [(ngModel)]="teacherAchievementObject.achievementDate"
+                           [value]="teacherAchievementObject.achievementDate">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="picker1">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1>
+                    </mat-datepicker>
+                    {{teacherAchievementObject.achievementDate | date: 'dd MMMM yyyy'}}
+                </mat-form-field>
+            </div>
+            <!-- / ACHIEVEMENT DATE -->
+        </form>
+
+    </div>
+    <!-- / EDIT USER EDUCATION INFO2 -->
+
+</div>
+<!-- / EDIT NEW ACHIEVEMENT -->
+
+<!-- NEW ACHIEVEMENT BUTTONS -->
+<div class="group"
+     fxLayout="row"
+     fxLayoutAlign="end"
+     *ngIf="teacherAchievementId === 0">
+    <button mat-button
+            (click)="cancelNewAchievement()">
+        {{'USER_INFORMATION_TEACHER_VIEW.CANCEL'| translate}}
+    </button>
+
+    <span>
+        &nbsp;
+    </span>
+
+    <button mat-raised-button
+            color="accent"
+            (click)="saveNewAchievement()"
+            [disabled]="!form.valid">
+        {{'USER_INFORMATION_TEACHER_VIEW.SAVE'| translate}}
+    </button>
+
+</div>
+<!-- / NEW ACHIEVEMENT BUTTONS -->
+
+<!-- TEACHER ACHIEVEMENT INFO VIEW -->
+<div class="content-achievement-info"
+     *ngIf="teacherAchievementId !== 0 && !editAchievementStat">
+
+    <span class="achievement-name">
+        {{achievementInfo.name}}
+    </span>
+
+    <br>
+
+    <div fxLayout="row">
+        <img class="avatar"
+             [src]="('/teacher-control/achievement/picture/' + teacherAchievementObject.achievementId) | secure | async">
+<!--             [src]="('http://78.140.223.4:8705/achievement/picture/' + teacherAchievementObject.achievementId) | secure | async">-->
+<!--             [src]="('http://localhost:8705/achievement/picture/' + teacherAchievementObject.achievementId) | secure | async">-->
+        <div class="title">
+            <span class="username achievement-name">
+                {{teacherAchievementObject.achievementDate | date: 'dd MMMM yyyy'}}
+            </span>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="about-achievement-area">
+        {{teacherAchievementObject.achievementDescription}}
+    </div>
+
+</div>
+<!-- / TEACHER ACHIEVEMENT INFO VIEW -->
+
+<!---->
+<!---->
+<!---->
+<!---->
+
+<!-- CHANGE ACHIEVEMENT INFORMATION -->
+<div *ngIf="editAchievementStat"
+     class="actions"
+     fxLayout="row"
+     [@animate]="{value:'*',params:{delay:'200ms'}}">
+
+    <div class="group">
+
+        <form fxLayout="column"
+              fxLayoutAlign="start"
+              fxFlex="1 0 auto"
+              name="form"
+              [formGroup]="form">
+
+            <!-- ACHIEVEMENT SELECTOR -->
+            <div>
+                <mat-form-field appearance="outline"
+                                class="mat-form-string-info"
+                                fxFlex="100">
+                    <mat-label>
+                        {{'USER_INFORMATION_TEACHER_VIEW.ACHIEVEMENT_TYPE'| translate}}
+                    </mat-label>
+                    <mat-select [(ngModel)]="teacherAchievementObject.achievementId"
+                                [value]="teacherAchievementObject.achievementId"
+                                formControlName="achievement">
+                        <div *ngFor="let achievement of achievementInfoList">
+                            <mat-option [value]="achievement.id">
+                                {{achievement.name}}
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        stars
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+            <!-- / ACHIEVEMENT SELECTOR -->
+
+            <!-- ACHIEVEMENT DESCRIPTION -->
+            <div fxLayout="row"
+                 fxLayoutAlign="start center"
+                 fxFlex="1 0 auto">
+                <mat-form-field appearance="outline"
+                                fxFlex="100"
+                                class="pr-4">
+                    <mat-label>
+                        {{'USER_INFORMATION_TEACHER_VIEW.ABOUT_ACHIEVEMENT'| translate}}
+                    </mat-label>
+                    <textarea matInput
+                              formControlName="description"
+                              required
+                              [(ngModel)]="teacherAchievementObject.achievementDescription"
+                              [value]="teacherAchievementObject.achievementDescription">
+                    </textarea>
+                    <mat-icon matSuffix
+                              class="secondary-text">
+                        description
+                    </mat-icon>
+                    <mat-error>
+                        {{'USER_INFORMATION_TEACHER_VIEW.DESCRIPTION_IS_REQUIRED'| translate}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- / ACHIEVEMENT DESCRIPTION -->
+
+            <!-- ACHIEVEMENT DATE -->
+            <div>
+                <mat-form-field appearance="outline"
+                                class="mat-form-date-info"
+                                fxFlex="100">
+                    <mat-label>
+                        {{'USER_INFORMATION_TEACHER_VIEW.CHOOSE_DATE'| translate}}
+                    </mat-label>
+                    <input matInput
+                           formControlName="achievementDate"
+                           [matDatepicker]="picker1"
+                           [(ngModel)]="teacherAchievementObject.achievementDate"
+                           [value]="teacherAchievementObject.achievementDate">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="picker1">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1>
+                    </mat-datepicker>
+                    {{teacherAchievementObject.achievementDate | date: 'dd MMMM yyyy'}}
+                </mat-form-field>
+            </div>
+            <!-- / ACHIEVEMENT DATE -->
+        </form>
+
+    </div>
+    <!-- / EDIT USER EDUCATION INFO2 -->
+
+</div>
+<!-- / CHANGE ACHIEVEMENT INFORMATION -->
+
+<!-- / EDIT TEACHER ACHIEVEMENT INFO BUTTONS -->
+<div fxLayout="row"
+     fxLayoutAlign="end end"
+     *ngIf="teacherAchievementId !== 0 && achievementStat">
+    <button mat-raised-button
+            color="accent"
+            *ngIf="!editAchievementStat"
+            (click)="editAchievementStat = !editAchievementStat">
+        {{'USER_INFORMATION_TEACHER_VIEW.EDIT'| translate}}
+    </button>
+
+    <span>
+        &nbsp;
+    </span>
+
+    <button mat-button
+            *ngIf="editAchievementStat"
+            (click)="cancelEditAchievement()">
+        {{'USER_INFORMATION_TEACHER_VIEW.CANCEL'| translate}}
+    </button>
+
+    <span>
+        &nbsp;
+    </span>
+
+    <button mat-raised-button
+            color="primary"
+            *ngIf="editAchievementStat"
+            (click)="deleteAchievement()">
+        {{'USER_INFORMATION_TEACHER_VIEW.DELETE'| translate}}
+    </button>
+
+    <span>
+        &nbsp;
+    </span>
+
+    <button mat-raised-button
+            color="accent"
+            *ngIf="editAchievementStat"
+            (click)="saveChange()"
+            [disabled]="teacherAchievementObject.achievementId === null || (teacherAchievementObject.achievementDescription | trim) === '' || teacherAchievementObject.achievementDate === null">
+        {{'USER_INFORMATION_TEACHER_VIEW.SAVE'| translate}}
+    </button>
+</div>
+
+<hr>
+<!-- / EDIT TEACHER ACHIEVEMENT INFO -->

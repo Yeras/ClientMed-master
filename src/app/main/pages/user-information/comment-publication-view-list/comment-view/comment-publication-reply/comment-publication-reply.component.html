@@ -1,0 +1,70 @@
+<a [routerLink]="'/user-information/' + commentReplyObject.userId">
+<!--    <img [src]="('http://localhost:8700/picture/file/' + commentReplyObject.userId) | secure | async" class="avatar">-->
+    <img [src]="('/picture/file/' + commentReplyObject.userId) | secure | async" class="avatar">
+</a>
+
+<div fxFlex
+     class="comment-object">
+
+    <div class="comment-message-bg">
+        <div fxLayout="row"
+             fxLayoutAlign="start center">
+            <span class="username">
+                {{commentReplyObject.userName}}
+            </span>
+        </div>
+
+        <div class="comment-message">
+            <a [routerLink]="'/user-information/' + commentReplyObject.replyLinkUserId">
+                {{commentReplyObject.replyLink + ','}}
+            </a>
+            {{commentReplyObject.commentMessage}}
+        </div>
+    </div>
+
+    <div class="actions border-bottom"
+         fxLayout="row"
+         fxLayoutAlign="space-between center">
+        <a class="reply-button"
+           (click)="replyCommentToReply()">
+            {{'USER_INFORMATION_COMMENT.REPLY'| translate}}
+        </a>
+        <span class="time"
+              fxLayoutAlign="end end">
+            {{commentReplyObject.commentDate | date: 'dd MMMM yyyy - hh:mm'}}
+        </span>
+    </div>
+
+    <!-- WRITE A REPLY COMMENT -->
+    <div class="reply"
+         fxLayout="row"
+         fxFlexFill
+         *ngIf="replyCommentWriteClick">
+
+<!--        <img [src]="('http://localhost:8700/picture/file/' + localStorageUserId) | secure | async" class="avatar">-->
+        <img [src]="('/picture/file/' + localStorageUserId) | secure | async" class="avatar">
+        <form fxFlex>
+                <textarea name="writeReplyComment"
+                          [placeholder]="commentReplyObject.userName + ','"
+                          [(ngModel)]="commentReplyObjectReply.commentMessage">
+                </textarea>
+            <button mat-button
+                    class="post-comment-button"
+                    aria-label="Cancel"
+                    (click)="replyCommentWriteClick = !replyCommentWriteClick">
+                {{'USER_INFORMATION_COMMENT.CANCEL'| translate}}
+            </button>
+            <span>&nbsp;</span>
+            <button mat-raised-button
+                    color="accent"
+                    class="post-comment-button"
+                    aria-label="Write"
+                    [disabled]="!commentReplyObjectReply.commentMessage"
+                    (click)="createReplyToReply()">
+                {{'USER_INFORMATION_COMMENT.WRITE'| translate}}
+            </button>
+        </form>
+    </div>
+    <!-- / WRITE A REPLY COMMENT -->
+
+</div>

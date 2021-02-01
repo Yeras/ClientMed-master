@@ -1,0 +1,40 @@
+<div class="fuse-widget-front">
+
+    <div class="pb-16 wrapper border-bottom">
+        <div class="h2 secondary-text title">
+            <strong>
+                {{'USER_INFORMATION_USER_VIEW.ARE_YOU_SURE_DELETE_INFO'| translate}}
+            </strong>
+        </div>
+    </div>
+    <br>
+
+    <div class="message-box info">
+        <span>
+            {{'USER_INFORMATION_USER_VIEW.ARE_YOU_SURE_DELETE_INFO'| translate}}
+        </span>
+    </div>
+    <br>
+
+    <div fxLayout="row"
+         fxLayoutAlign="end">
+        <div>
+
+            <button mat-button
+                    (click)="matDialogRef.close()">
+                {{'USER_INFORMATION_USER_VIEW.CLOSE'| translate}}
+            </button>
+
+            <span>&nbsp;</span>
+
+            <button mat-raised-button
+                    color="accent"
+                    (click)="deleteEducationInfo()">
+                {{'USER_INFORMATION_USER_VIEW.DELETE'| translate}}
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

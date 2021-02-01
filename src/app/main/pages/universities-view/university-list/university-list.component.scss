@@ -1,0 +1,99 @@
+@import "src/@fuse/scss/fuse";
+
+.loader-size-university {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 150px;
+    width: 150px;
+}
+
+.infinity-scroll-university {
+    height: 75vh;
+}
+
+#search-filter {
+
+    .search-wrapper-university-list {
+        width: 30%;
+        border-radius: 28px;
+        overflow: hidden;
+        background-color: white;
+        @include mat-elevation(1);
+
+        .search-university-list {
+            width: 100%;
+
+            input {
+                width: 100%;
+                min-height: 48px;
+                max-height: 48px;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
+    .search-button-click {
+        border-radius: 28px;
+    }
+
+}
+
+app-university-list {
+
+    .content {
+
+        .cards {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .card {
+                display: flex;
+                align-items: flex-start;
+                padding: 24px 24px 48px 24px;
+                margin-bottom: 96px;
+
+                .card-preview {
+                    display: flex;
+                    min-width: 320px;
+                }
+
+                .card-source {
+                    display: none;
+                }
+            }
+        }
+
+        &.source {
+
+            .cards {
+                flex-direction: column;
+
+                .card {
+                    width: 100%;
+                    margin-bottom: 24px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+                    .card-source {
+                        background: #263238;
+                        display: flex !important;
+                        flex: 1;
+                        max-height: 400px;
+                        min-width: 400px;
+                        margin-left: 24px;
+                        overflow: auto;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.profile-bg-picture {
+    height: 180px;
+}

@@ -1,0 +1,55 @@
+<div *ngIf="!universityAccountStat">
+    <div *ngIf="!myProfileStat">
+
+        <button mat-raised-button
+                *ngIf="!followingRequestStat && !followingStat"
+                (click)="following()">
+            {{'UNIVERSITY_TEACHER.FOLLOW'| translate}}
+        </button>
+
+        <button mat-raised-button
+                *ngIf="followingRequestStat"
+                (click)="removeRequestFollow()">
+            {{'UNIVERSITY_TEACHER.REMOVE_REQUEST'| translate}}
+        </button>
+
+        <!--        <button mat-raised-button-->
+        <!--                *ngIf="followingStat"-->
+        <!--                (click)="sendMessage()">-->
+        <!--            {{'UNIVERSITY_TEACHER.REMOVE_REQUEST'| translate}}-->
+        <!--            Send Message-->
+        <!--        </button>-->
+        <span>
+            &nbsp;
+        </span>
+        <button mat-icon-button
+                [matTooltip]="'UNIVERSITY_TEACHER.UNFOLLOW_TO_TEACHER'| translate"
+                *ngIf="followingStat"
+                (click)="unFollowToUser()">
+            <mat-icon>
+                delete
+            </mat-icon>
+        </button>
+
+    </div>
+</div>
+
+<!-- ONLY FOR UNIVERSITY ACCOUNT -->
+<div *ngIf="universityAccountStat">
+    <!--    <button mat-raised-button-->
+    <!--            (click)="sendMessage()">-->
+    <!--        Send Message-->
+    <!--    </button>-->
+
+    <!-- REMOVE TEACHER FROM UNIVERSITY LIST (NO MORE TEACHER FOR THIS UNIVERSITY)-->
+    <button mat-icon-button
+            [matTooltip]="'UNIVERSITY_TEACHER.REMOVE_TEACHER'| translate"
+            (click)="removeTeacher()">
+        <mat-icon>
+            delete
+        </mat-icon>
+    </button>
+    <!-- / REMOVE TEACHER FROM UNIVERSITY LIST (NO MORE TEACHER FOR THIS UNIVERSITY)-->
+
+</div>
+<!-- / ONLY FOR UNIVERSITY ACCOUNT -->

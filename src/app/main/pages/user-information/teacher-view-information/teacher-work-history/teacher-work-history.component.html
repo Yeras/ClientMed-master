@@ -1,0 +1,41 @@
+<div *ngFor="let teacherWorkInfo of teacherWorkInfoProfile">
+
+    <div fxLayout="row"
+         fxLayoutAlign="start center">
+
+        <div class="logo">
+            <a [routerLink]="'/user-information/' + teacherWorkInfo.userUniversityId">
+                <img class="avatar"
+                     [src]="('/picture/file/' + teacherWorkInfo.userUniversityId) | secure | async">
+<!--                     [src]="('http://localhost:8700/picture/file/' + teacherWorkInfo.userUniversityId) | secure | async">-->
+            </a>
+        </div>
+
+        <div>
+            <a [routerLink]="'/user-information/' + teacherWorkInfo.userUniversityId">
+                <div class="name">
+                    <span>
+                        {{teacherWorkInfo.universityName}}
+                    </span>
+                </div>
+            </a>
+
+            <div class="category">
+                <span>
+                    {{teacherWorkInfo.enterDate | date: 'dd MMMM yyyy'}}
+                </span>
+                <span *ngIf="teacherWorkInfo.removeDate !== null">
+                    {{'-'}}
+                </span>
+                <span *ngIf="teacherWorkInfo.removeDate !== null">
+                    {{teacherWorkInfo.removeDate | date: 'dd MMMM yyyy'}}
+                </span>
+            </div>
+            <!--            <div class="members">-->
+            <!--            </div>-->
+        </div>
+    </div>
+    <hr>
+    <br>
+
+</div>

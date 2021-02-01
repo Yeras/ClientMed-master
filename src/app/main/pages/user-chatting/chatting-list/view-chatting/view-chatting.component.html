@@ -1,0 +1,151 @@
+<!-- CHAT -->
+<div class="chat"
+     fxFlex
+     fxLayout="column">
+
+    <!-- CHAT TOOLBAR -->
+    <mat-toolbar class="chat-toolbar">
+
+        <div fxFlex
+             fxLayout="row"
+             fxLayoutAlign="space-between center">
+
+            <div fxLayout="row"
+                 fxLayoutAlign="start center">
+
+                <!-- CHAT CONTACT-->
+                <div class="chat-contact"
+                     fxLayout="row"
+                     fxLayoutAlign="start center"
+                     fuseMatSidenavToggler="chat-right-sidenav">
+
+                    <div class="avatar-wrapper">
+                        <a [routerLink]="'/user-information/' + chattingWithUserId">
+                            <img [src]="chattingWithUserImg | secure | async"
+                                 class="avatar"
+                                 alt="{{chattingWithUserName}}"/>
+                        </a>
+                    </div>
+
+                    <div class="chat-contact-name">
+                        <a [routerLink]="'/user-information/' + chattingWithUserId">
+                            {{chattingWithUserName}}
+                        </a>
+                    </div>
+
+                </div>
+                <!-- / CHAT CONTACT-->
+            </div>
+
+            <div>
+                <button mat-icon-button
+                        [matMenuTriggerFor]="contactMenu"
+                        aria-label="more">
+                    <mat-icon>
+                        more_vert
+                    </mat-icon>
+                </button>
+
+                <mat-menu #contactMenu="matMenu">
+                    <a [routerLink]="'/user-information/' + chattingWithUserId">
+                        <button mat-menu-item
+                                fuseMatSidenavToggler="chat-right-sidenav">
+                            <mat-icon>
+                                perm_identity
+                            </mat-icon>
+                            {{'USER_CHATTING.USER_PROFILE'| translate}}
+                        </button>
+                    </a>
+                    <button mat-menu-item
+                            fuseMatSidenavToggler="chat-right-sidenav"
+                            (click)="deleteChat()">
+                        <mat-icon>
+                            delete
+                        </mat-icon>
+                        {{'USER_CHATTING.DELETE_CHAT'| translate}}
+                    </button>
+                </mat-menu>
+            </div>
+
+        </div>
+    </mat-toolbar>
+    <!-- / CHAT TOOLBAR -->
+
+    <!-- CHAT CONTENT -->
+    <div id="chat-content"
+         fxFlex="1 1 auto"
+         fusePerfectScrollbar
+         infiniteScroll
+         [infiniteScrollDistance]="0.5"
+         (scrolledUp)="findMoreDataScrollingUp()"
+         [scrollWindow]="false">
+
+        <!-- CHAT MESSAGES -->
+        <div class="chat-messages">
+            <div *ngFor="let message of webChattingHistory; let i = index"
+                 class="message-row"
+                 [ngClass]="{
+                            'me': message.userId === userId,
+                            'contact': message.userId !== userId,
+                            'first-of-group': isFirstMessageOfGroup(message, i),
+                            'last-of-group': isLastMessageOfGroup(message, i)
+                            }">
+                <div class="bubble">
+                    <div class="message">
+                        {{message.messageText}}
+                    </div>
+                    <div class="time secondary-text">
+                        {{message.messageSendDate | date:'short'}}
+                    </div>
+                </div>
+
+            </div>
+            <!-- / MESSAGE -->
+
+        </div>
+        <!-- CHAT MESSAGES -->
+
+    </div>
+    <!-- / CHAT CONTENT -->
+
+    <!-- CHAT FOOTER -->
+    <div class="chat-footer"
+         fxFlex="0 0 auto"
+         fxLayout="column">
+
+        <!-- REPLY FORM -->
+        <div class="reply-form"
+             fxFlex="0 0 auto"
+             fxLayout="row"
+             fxLayoutAlign="center center">
+
+            <form #replyForm="ngForm"
+                  (keydown)="triggerFunction($event)"
+                  fxFlex
+                  fxLayout="row"
+                  fxLayoutAlign="start center">
+
+                <mat-form-field class="message-text"
+                                fxFlex floatLabel="never"
+                                appearance="standard">
+                    <textarea matInput
+                              #replyInput
+                              [placeholder]="'USER_CHATTING.TYPE_MESSAGE'| translate"
+                              ngModel
+                              name="message"
+                              (keydown.enter)="false"
+                              [rows]="1"
+                              [matTextareaAutosize]="true">
+                    </textarea>
+                </mat-form-field>
+
+            </form>
+
+        </div>
+        <!-- / REPLY FORM -->
+
+    </div>
+    <!-- / CHAT FOOTER-->
+
+</div>
+<!-- / CHAT -->

@@ -1,0 +1,40 @@
+<div *ngIf="publicationLength === 0">
+    <div class="timeline-item">
+        <header fxLayout="row"
+                fxLayoutAlign="space-between start">
+            <div class="user"
+                 fxLayout="row"
+                 fxLayoutAlign="start center">
+                <img class="avatar"
+                     [src]="profilePhoto | secure | async">
+                {{'HOME_PAGE.NO_PUBLICATION_NOW'| translate}}
+            </div>
+        </header>
+    </div>
+</div>
+
+<div class="infinity-scroll-home"
+     *ngIf="publicationLength !== 0"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="findMoreDataScrolling()"
+     [scrollWindow]="false">
+    <div class="timeline-item"
+         *ngFor="let publication of publicationList">
+
+        <app-university-publication-view
+            [userId]="publication.userId"
+            [publicationId]="publication.id"
+            (deletePublicationId)="deletePublicationInList($event)">
+        </app-university-publication-view>
+
+    </div>
+
+    <div *ngIf="scrollLoaderStat"
+         class="loader-size-home"
+         fxLayoutAlign="center center">
+        <img [src]="'assets/icons/waiting.gif'">
+    </div>
+
+</div>

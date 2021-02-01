@@ -1,0 +1,12 @@
+footer {
+    padding: 16px;
+
+    .comment-count {
+        margin-bottom: 16px;
+        cursor: pointer;
+
+        mat-icon {
+            margin-left: 8px;
+        }
+    }
+}

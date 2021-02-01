@@ -1,0 +1,60 @@
+<!-- HEADER -->
+<div class="pb-16 wrapper border-bottom">
+    <div class="h2 secondary-text title">
+        <span>
+            {{'USER_INFORMATION_TEACHER_VIEW.ACHIEVEMENTS'| translate}}
+        </span>
+        <button mat-icon-button
+                *ngIf="createAchievement"
+                (click)="createNewAchievement()">
+            <mat-icon>
+                edit
+            </mat-icon>
+        </button>
+    </div>
+    <div class="icon-cls">
+        <button mat-icon-button
+                class="m-0 mr-16 secondary-text button-position"
+                (click)="activeModal.close()">
+            <mat-icon>
+                close
+            </mat-icon>
+        </button>
+    </div>
+</div>
+<!-- / HEADER -->
+
+<!-- MAIN INFORMATION -->
+<div class="main-content-body border-bottom">
+    <div *ngIf="editAchievement === true">
+        <app-achievement-view-edit [teacherAchievementId]=0
+                                   [userId]="userId"
+                                   (refreshParentView)="refreshFromChangingForCancel()"
+                                   (refreshParentViewSave)="refreshFromChangingForSave()">
+        </app-achievement-view-edit>
+    </div>
+
+    <div *ngFor="let achievement of teacherAchievementList">
+        <app-achievement-view-edit [teacherAchievementId]=achievement.id
+                                   [userId]="userId"
+                                   (refreshParentView)="refreshFromChangingForCancel()"
+                                   (refreshParentViewSave)="refreshFromChangingForSave()">
+        </app-achievement-view-edit>
+    </div>
+
+</div>
+<!-- / MAIN INFORMATION -->
+
+<!-- FOOTER -->
+<div class="p-16"
+     fxLayout="row"
+     fxLayoutAlign="end">
+    <div>
+        <button mat-raised-button
+                class="accent"
+                (click)="activeModal.close()">
+            {{'USER_INFORMATION_TEACHER_VIEW.CLOSE'| translate}}
+        </button>
+    </div>
+</div>
+<!-- / FOOTER -->

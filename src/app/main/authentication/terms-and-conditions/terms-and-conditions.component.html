@@ -1,0 +1,41 @@
+<!-- HEADER -->
+<div class="pb-16 wrapper border-bottom">
+    <div class="h2 secondary-text title">
+        <span>
+            Terms and Conditions
+        </span>
+    </div>
+    <div class="icon-cls">
+        <button mat-icon-button
+                class="m-0 mr-16 secondary-text button-position"
+                (click)="activeModal.close()">
+            <mat-icon>
+                close
+            </mat-icon>
+        </button>
+    </div>
+</div>
+<!-- / HEADER -->
+
+<!-- MAIN INFORMATION -->
+<div class="main-content-body border-bottom">
+
+    <app-terms-and-conditions-information>
+    </app-terms-and-conditions-information>
+
+</div>
+<!-- / MAIN INFORMATION -->
+
+<!-- FOOTER -->
+<div class="p-16"
+     fxLayout="row"
+     fxLayoutAlign="end">
+    <div>
+        <button mat-raised-button
+                class="accent"
+                (click)="activeModal.close()">
+            Close
+        </button>
+    </div>
+</div>
+<!-- / FOOTER -->

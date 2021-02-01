@@ -1,0 +1,35 @@
+@import "src/@fuse/scss/fuse";
+
+.wrapper {
+    display: flex;
+
+    .secondary-text {
+        flex: 1;
+        font-weight: bold;
+    }
+
+    .title {
+        font-size: 17px;
+    }
+
+    .icon-cls {
+        flex: 1;
+        text-align: right;
+
+        .button-position {
+            top: -9px;
+        }
+    }
+
+}
+
+.main-content-body-deactivate {
+    min-height: 25vh !important;
+    max-height: 25vh !important;
+    //overflow-y: scroll
+
+    .message-font {
+        font-size: 12px;
+    }
+
+}

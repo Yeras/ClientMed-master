@@ -1,0 +1,51 @@
+.like-button-disable {
+    padding: 10px 6px;
+    text-transform: inherit;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0 0 16px 8px;
+    min-width: inherit;
+    line-height: inherit;
+
+    mat-icon {
+        margin: 0 12px 0 0;
+        transform: scale(2);
+    }
+}
+
+
+.like-button-choose {
+    padding: 10px 6px;
+    text-transform: inherit;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0 0 16px 8px;
+    min-width: inherit;
+    line-height: inherit;
+
+    mat-icon {
+        margin: 0 12px 0 0;
+        color: red;
+        transform: scale(2);
+    }
+}
+
+
+/***TODO: Use when, add share button*/
+//.share-button {
+//    padding: 4px 6px;
+//    text-transform: inherit;
+//    font-size: 13px;
+//    font-weight: normal;
+//    margin: 0 0 16px 8px;
+//    min-width: inherit;
+//    line-height: inherit;
+//
+//    &:hover {
+//        background-color: transparent;
+//    }
+//
+//    mat-icon {
+//        margin: 0 8px 0 0;
+//    }
+//}

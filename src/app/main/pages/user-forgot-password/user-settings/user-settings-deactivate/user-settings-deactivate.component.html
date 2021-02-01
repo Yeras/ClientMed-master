@@ -1,0 +1,107 @@
+<!-- HEADER -->
+<div class="pb-16 wrapper border-bottom">
+    <div class="h2 secondary-text title">
+        <span>
+            {{'SETTINGS.DEACTIVATE_ACCOUNT'| translate}}
+        </span>
+    </div>
+    <div class="icon-cls">
+        <button mat-icon-button
+                class="m-0 mr-16 secondary-text button-position"
+                (click)="activeModal.close()">
+            <mat-icon>
+                close
+            </mat-icon>
+        </button>
+    </div>
+</div>
+<!-- / HEADER -->
+
+<!-- MAIN INFORMATION -->
+<div class="main-content-body-deactivate border-bottom">
+
+    <div class="h2">
+        <span>
+            {{'SETTINGS.CHOOSE'| translate}}
+        </span>
+        <u>
+            <span>
+                {{'SETTINGS.DEACTIVATE_QUESTION'| translate}}
+            </span>
+        </u>
+        <span>
+            {{'SETTINGS.ACCOUNT_REASON'| translate}}
+        </span>
+    </div>
+
+    <div class="h4">
+        <mat-checkbox>
+            {{'SETTINGS.HAVE_TEACHER_ACCOUNT'| translate}}
+        </mat-checkbox>
+    </div>
+    <div class="h4">
+        <mat-checkbox>
+            {{'SETTINGS.SCHOOL_STUDENT'| translate}}
+        </mat-checkbox>
+    </div>
+    <div class="h4">
+        <mat-checkbox>
+            {{'SETTINGS.NOT_STUDENT_MORE'| translate}}
+        </mat-checkbox>
+    </div>
+    <div class="h4">
+        <mat-checkbox>
+            {{'SETTINGS.NOT_INTERESTING_CONTENT'| translate}}
+        </mat-checkbox>
+    </div>
+    <div class="h4">
+        <mat-checkbox>
+            {{'SETTINGS.NEED_NEW_ACCOUNT'| translate}}
+        </mat-checkbox>
+    </div>
+    <div class="h4">
+        <mat-checkbox>
+            {{'SETTINGS.OTHER'| translate}}
+        </mat-checkbox>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="message-font">
+        <span>
+            {{'SETTINGS.FOR_ACTIVATE_DESCRIPTION'| translate}}
+        </span>
+        <u>
+            <span>
+               {{'SETTINGS.GENERATE_TOKEN'| translate}}
+            </span>
+        </u>
+    </div>
+
+</div>
+<!-- / MAIN INFORMATION -->
+
+<!-- FOOTER -->
+<div class="p-16"
+     fxLayout="row"
+     fxLayoutAlign="end">
+    <div>
+        <button mat-button
+                (click)="activeModal.close()">
+            {{'SETTINGS.CLOSE'| translate}}
+        </button>
+
+        <span>
+            &nbsp;
+        </span>
+
+        <button mat-raised-button
+                class="primary"
+                (click)="deactivateAccount()">
+            {{'SETTINGS.DEACTIVATE'| translate}}
+        </button>
+    </div>
+
+</div>
+<!-- / FOOTER -->

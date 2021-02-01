@@ -1,0 +1,78 @@
+<div class="border-bottom">
+    <button mat-icon-button
+            (click)="activeModal.close()">
+        <mat-icon>
+            arrow_back_ios
+        </mat-icon>
+    </button>
+    <span>
+        &nbsp;
+    </span>
+    <span>
+        Back to Grade
+    </span>
+
+</div>
+
+<div class="border-bottom">
+    <div class="h2"
+         fxLayoutAlign="center center">
+        <span>
+            &nbsp;
+        </span>
+        <span>
+            Don't forget!
+        </span>
+        <br>
+        <br>
+    </div>
+
+    <div class="h2">
+        <span>
+            &nbsp;
+        </span>
+        <span>
+            After click "OK",
+        </span>
+        <span>
+            your grade will be saved,
+        </span>
+        <span class="warn">
+            then you can't change grade
+        </span>
+    </div>
+
+    <div class="h2">
+        <span>
+            &nbsp;
+        </span>
+        <span>
+            If you are sure, please click "OK"
+        </span>
+    </div>
+    <br>
+
+    <div class="h2">
+        <span>
+            &nbsp;
+        </span>
+        {{'Your grade is (' + gradePoint + '% = ' + gradeName + ')'}}
+    </div>
+    <br>
+</div>
+
+<br>
+
+<div fxLayoutAlign="end end">
+    <button mat-raised-button
+            (click)="activeModal.close()">
+        Close
+    </button>
+    <span>
+        &nbsp;
+    </span>
+    <button mat-raised-button
+            (click)="activeModal.close('OK')">
+        OK
+    </button>
+</div>

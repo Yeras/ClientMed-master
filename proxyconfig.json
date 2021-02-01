@@ -1,0 +1,10 @@
+[
+    {
+        "context": [
+            ""
+        ],
+        "target": "http://localhost:8700",
+        "secure": false,
+        "changeOrigin": true
+    }
+]

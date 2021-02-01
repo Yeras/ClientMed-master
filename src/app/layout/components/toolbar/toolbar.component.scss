@@ -1,0 +1,150 @@
+@import "src/@fuse/scss/fuse";
+
+toolbar {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    z-index: 4;
+
+    &.below {
+        z-index: 2;
+    }
+
+    .mat-toolbar {
+        position: relative;
+        background: inherit !important;
+        color: inherit !important;
+    }
+
+    .toolbar-background {
+        background-color: #264A68;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        .logo-icon {
+            width: 38px;
+        }
+    }
+
+    .user-button,
+    fuse-search-bar,
+    .language-button,
+    .chat-panel-toggle-button,
+    .quick-panel-toggle-button {
+        min-width: 64px;
+        height: 64px;
+
+        @include media-breakpoint('xs') {
+            height: 56px;
+        }
+
+        .user-name-color {
+            color: #C3D0DA;
+        }
+
+    }
+
+    .navbar-toggle-button {
+        min-width: 56px;
+        height: 56px;
+    }
+
+    .toolbar-separator {
+        height: 64px;
+        width: 1px;
+
+        @include media-breakpoint('xs') {
+            height: 56px;
+        }
+    }
+}
+
+.web-icon {
+    margin-left: 2vh;
+}
+
+.search-wrapper {
+    width: 18%;
+    border-radius: 28px;
+    overflow: hidden;
+    background-color: white;
+    @include mat-elevation(1);
+
+    .search {
+        width: 100%;
+
+        input {
+            width: 100%;
+            min-height: 48px;
+            max-height: 48px;
+            border: none;
+            outline: none;
+        }
+    }
+}
+
+.button-group-icon {
+    margin-left: 40vh;
+    transform: scale(1.5);
+
+    .router-button-icon {
+        margin-left: 5vh;
+    }
+
+    .choose-page {
+        color: #38BEDC;
+    }
+
+    .no-choose-page {
+        color: #C3D0DA;
+    }
+
+    .notification-have {
+        color: darkgreen;
+    }
+
+    .new-message-have {
+        color: #933FC6;
+    }
+}
+
+.avatar_toolbar {
+    margin-left: 2vh;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    //margin: 0 8px 0 0;
+    //border-radius: 50%;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+
+    &.square {
+        border-radius: 0;
+    }
+
+    &.small {
+        width: 20px;
+        min-width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    &.big {
+        width: 72px;
+        min-width: 72px;
+        height: 72px;
+        line-height: 72px;
+    }
+
+    &.huge {
+        width: 96px;
+        min-width: 96px;
+        height: 96px;
+        line-height: 96px;
+    }
+}

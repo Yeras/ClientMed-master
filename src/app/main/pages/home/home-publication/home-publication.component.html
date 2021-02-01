@@ -1,0 +1,75 @@
+<div id="profile-university"
+     class="page-layout simple tabbed">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- PUBLICATIONS -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="60">
+
+                <div *ngIf="myProfileStat"
+                     class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <img class="avatar"
+                             [src]="profilePhoto | secure | async">
+                        <button mat-raised-button
+                                class="button-create-publication"
+                                aria-label="create"
+                                (click)="createNewPublication()">
+                            {{'HOME_PAGE.CREATE_PUBLICATION'| translate}}
+                        </button>
+                    </header>
+
+                </div>
+
+                <div>
+                    <app-home-publication-view
+                        [userId]="userId"
+                        [changeEngine]="changeEngine">
+                    </app-home-publication-view>
+                </div>
+
+            </div>
+            <!-- / PUBLICATIONS -->
+
+            <!-- ADVERTISEMENT -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="40">
+
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header class="content"
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="h2 info-line university-name">
+                            <img src="assets/images/backgrounds/Advertisement.png">
+                        </div>
+                    </header>
+
+                </div>
+
+
+            </div>
+            <!-- / ADVERTISEMENT -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

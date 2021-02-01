@@ -1,0 +1,43 @@
+<div class="fuse-widget-front">
+
+    <div class="pb-16 wrapper border-bottom">
+        <div class="h2 secondary-text title">
+            {{'USER_INFORMATION_WRITE_MESSAGE.SEND_MESSAGE'| translate}}
+        </div>
+        <div class="icon-cls">
+            <button mat-icon-button
+                    class="m-0 mr-16 secondary-text button-position"
+                    (click)="activeModal.close()">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+        </div>
+        <br>
+    </div>
+
+    <div class="border-bottom textarea-content "
+         fusePerfectScrollbar
+         fxLayout="column">
+
+        <textarea matInput
+                  name="publication"
+                  [placeholder]="'USER_INFORMATION_WRITE_MESSAGE.TYPE_MESSAGE'| translate"
+                  [(ngModel)]="messageObject.message">
+        </textarea>
+        <br>
+    </div>
+
+    <br>
+    <div fxLayout="row"
+         fxLayoutAlign="end"
+         class="main-content">
+        <button mat-raised-button
+                color="accent"
+                (click)="sendMessageUsingSocket()">
+            {{'USER_INFORMATION_WRITE_MESSAGE.SEND_MESSAGE'| translate}}
+        </button>
+
+    </div>
+
+</div>

@@ -1,0 +1,55 @@
+<!-- COMMENT -->
+<footer class=""
+        fxLayout="column"
+        fxLayoutAlign="start start">
+
+    <!-- WRITE A COMMENT -->
+    <div class="reply"
+         fxLayout="row"
+         fxFlexFill>
+        <img [src]="profilePhoto | secure | async"
+             class="avatar">
+        <form fxFlex>
+                <textarea name="writeComment"
+                          [placeholder]="'USER_INFORMATION_COMMENT.WRITE_COMMENT'| translate"
+                          [(ngModel)]="commentObject.commentMessage">
+                </textarea>
+            <button mat-raised-button
+                    color="accent"
+                    class="post-comment-button"
+                    aria-label="Write"
+                    [disabled]="!commentObject.commentMessage"
+                    (click)="createComment()">
+                {{'USER_INFORMATION_COMMENT.WRITE'| translate}}
+            </button>
+        </form>
+    </div>
+    <!-- / WRITE A COMMENT -->
+
+    <br>
+
+    <!-- READ A COMMENT -->
+    <div class="comment-count"
+         fxLayout="row"
+         fxLayoutAlign="start center"
+         (click)="showComments()">
+        {{commentCount + ('USER_INFORMATION_COMMENT.COMMENTS'| translate)}}
+        <mat-icon class="s-16">
+            keyboard_arrow_down
+        </mat-icon>
+    </div>
+    <!-- / READ A COMMENT -->
+
+    <!-- SHOW COMMENT(S) -->
+    <ng-container *ngIf="showCommentClick">
+        <div fxFlexFill
+             *ngFor="let comment of commentList">
+            <app-comment-view
+                [commentObject]="comment">
+            </app-comment-view>
+        </div>
+    </ng-container>
+    <!-- / SHOW COMMENT(S) -->
+
+</footer>
+<!-- / COMMENT -->

@@ -1,0 +1,115 @@
+<header fxLayout="row"
+        fxLayoutAlign="space-between start">
+    <div class="user"
+         fxLayout="row"
+         fxLayoutAlign="start center">
+        <a [routerLink]="'/user-information/' + publicationObject.userId">
+            <img class="avatar"
+                 [src]="('/picture/file/' + userId) | secure | async">
+<!--                 [src]="('http://localhost:8700/picture/file/' + userId) | secure | async">-->
+        </a>
+
+        <div fxLayout="column">
+            <a [routerLink]="'/user-information/' + publicationObject.userId">
+                <div class="title">
+                    <span class="username">
+                        {{publicationObject.userName}}
+                    </span>
+                </div>
+            </a>
+            <div class="time">
+                {{publicationObject.publicationDate | date: 'dd MMMM yyyy - hh:mm'}}
+            </div>
+        </div>
+    </div>
+
+    <div class=""
+         fxFlex="0 1 auto"
+         fxLayout="row"
+         fxLayoutAlign="start center">
+        <button mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="More">
+            <mat-icon>
+                more_vert
+            </mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <a [routerLink]="'/publication/' + publicationId + '/' + publicationObject.userId"
+               target="_blank">
+                <button mat-menu-item>
+                    <mat-icon>
+                        forum
+                    </mat-icon>
+                    <span>
+                    {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.OPEN_PUBLICATION'| translate}}
+                </span>
+                </button>
+            </a>
+
+            <button mat-menu-item
+                    *ngIf="myProfileStat"
+                    (click)="editPublication()">
+                <mat-icon>
+                    edit
+                </mat-icon>
+                <span>
+                    {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.EDIT_PUBLICATION'| translate}}
+                </span>
+            </button>
+
+            <button mat-menu-item
+                    *ngIf="myProfileStat"
+                    (click)="deletePublication()">
+                <mat-icon>
+                    delete
+                </mat-icon>
+                <span>
+                    {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.DELETE_PUBLICATION'| translate}}
+                </span>
+            </button>
+        </mat-menu>
+    </div>
+
+</header>
+
+<div class="content">
+    <div class="message border-bottom about-information-area">
+        <div *ngIf="!showFullTextStat">
+            <div *ngIf="publicationObject.publicationText?.length < 250">
+                {{publicationObject.publicationText}}
+            </div>
+            <div *ngIf="publicationObject.publicationText?.length >= 250">
+                {{(publicationObject.publicationText | slice:0:100) + '...'}}
+            </div>
+        </div>
+
+        <ng-container *ngIf="publicationObject.publicationText?.length >= 250 && !showFullTextStat">
+            <div class="comment-count"
+                 (click)="showAllText()">
+                {{'USER_INFORMATION_UNIVERSITY_PUBLICATION.SHOW_MORE'| translate}}
+            </div>
+        </ng-container>
+
+        <div *ngIf="showFullTextStat">
+            {{publicationObject.publicationText}}
+        </div>
+
+    </div>
+
+    <div *ngIf="publicationObject.pictureUrl">
+        <img class="publication-image"
+             [src]="(publicationImgSrc + publicationId + '?' + changePicture) | secure | async">
+    </div>
+
+    <app-publication-like-dislike
+        [publicationId]="publicationId">
+    </app-publication-like-dislike>
+</div>
+
+<!-- COMMENTS -->
+<app-comment-publication-view-list
+    [publicationId]="publicationId">
+</app-comment-publication-view-list>
+<!-- / COMMENTS -->

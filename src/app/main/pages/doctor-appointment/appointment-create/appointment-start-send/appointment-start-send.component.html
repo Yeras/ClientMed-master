@@ -1,0 +1,30 @@
+<div class="fuse-widget-front">
+
+    <div>
+        <h1>
+            Is it ok for sending?
+        </h1>
+    </div>
+
+    <br>
+
+    <div fxLayout="row"
+         fxLayoutAlign="end">
+        <div>
+            <button mat-button
+                    (click)="activeModal.close()">
+                No
+            </button>
+            <span>
+                &nbsp;
+            </span>
+            <button mat-raised-button
+                    class="accent"
+                    (click)="activeModal.close('yes')">
+                Yes
+            </button>
+        </div>
+
+    </div>
+
+</div>

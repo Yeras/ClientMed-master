@@ -1,0 +1,492 @@
+<!-- SEARCH -->
+<div id="search-filter"
+     fxLayout="row"
+     fxLayoutAlign="start center">
+    <div class="search-wrapper-university-list">
+        <div class="search-university-list"
+             fxFlex
+             fxLayout="row"
+             fxLayoutAlign="start center">
+            <span>
+                &nbsp;
+            </span>
+            <mat-icon>
+                school
+            </mat-icon>
+            <input [(ngModel)]="searchUniversityName"
+                   [placeholder]="'UNIVERSITY_VIEW.UNIVERSITY_NAME'| translate">
+        </div>
+    </div>
+
+    <span>
+        &nbsp;
+    </span>
+    <span>
+        &nbsp;
+    </span>
+
+    <div class="search-wrapper-university-list">
+        <div class="search-university-list"
+             fxFlex
+             fxLayout="row"
+             fxLayoutAlign="start center">
+            <span>
+                &nbsp;
+            </span>
+            <mat-icon>
+                location_on
+            </mat-icon>
+            <input [(ngModel)]="searchCountryName"
+                   [placeholder]="'UNIVERSITY_VIEW.COUNTRY_CITY_NAME'| translate">
+        </div>
+    </div>
+
+    <span>
+        &nbsp;
+    </span>
+
+    <button class="search-button-click"
+            mat-raised-button
+            (click)="searchFullUniversityInfo()">
+        {{'UNIVERSITY_VIEW.SEARCH'| translate}}
+    </button>
+
+</div>
+<br>
+<br>
+<!-- / SEARCH -->
+
+<div *ngIf="!universitySearchStatByUniversity && !universitySearchStatByCountry"
+     id="cards"
+     class="page-layout simple fullwidth infinity-scroll-university"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="findMoreDataScrolling()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="cards">
+
+            <!-- CARD 11 -->
+            <div class="card"
+                 *ngFor="let universityInfo of universityInfoListPage">
+
+                <!-- PREVIEW -->
+                <div class="card-preview">
+
+                    <div class="fuse-card">
+
+                        <div class="p-16"
+                             fxLayout="row"
+                             fxLayoutAlign="start center">
+                            <img class="w-40 h-40 border-radius-100"
+                                 [src]="('/picture/file/' + universityInfo.userId) | secure | async">
+<!--                                 [src]="('http://localhost:8700/picture/file/' + universityInfo.userId) | secure | async">-->
+
+                            <div class="ml-16">
+                                <div class="text-bold">
+                                    <span>
+                                        {{('UNIVERSITY_VIEW.WORLD_RATING'| translate) + universityInfo.ratingId}}
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="text-bold">
+                                    <span *ngIf="universityInfo.countryName !== ''">
+                                        {{universityInfo.countryName + ' -'}}
+                                    </span>
+                                    <span *ngIf="universityInfo.cityName !== ''">
+                                        {{universityInfo.cityName}}
+                                    </span>
+                                </div>
+                                <div class="h5 text-bold secondary-text">
+                                    <span>
+                                        {{universityInfo.gradeName + ' = ' + universityInfo.grade + '%'}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img class="profile-bg-picture"
+                             [src]="('/pictureBg/file/' + universityInfo.userId) | secure | async">
+<!--                             [src]="('http://localhost:8700/pictureBg/file/' + universityInfo.userId) | secure | async">-->
+
+                        <div class="p-16">
+                            <div class="h1">
+                                {{universityInfo.universityName}}
+                            </div>
+                        </div>
+
+                        <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <a [routerLink]="'/user-information/' + universityInfo.userId">
+                                    <button mat-button color="accent">
+                                        {{'UNIVERSITY_VIEW.OPEN_PROFILE'| translate}}
+                                    </button>
+                                </a>
+                                <a [href]="universityInfo.webPage"
+                                   target="_blank">
+                                    <button mat-button color="accent">
+                                        {{'UNIVERSITY_VIEW.WEB_PAGE'| translate}}
+                                    </button>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / PREVIEW -->
+
+            </div>
+            <!-- / CARD 11 -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+    <div *ngIf="scrollLoaderStat"
+         class="loader-size-university"
+         fxLayoutAlign="center center">
+        <img [src]="'assets/icons/waiting.gif'">
+    </div>
+
+</div>
+
+<!---->
+<!---->
+<!---->
+<!-------------------- SEARCH AREA -------------------->
+<!---->
+<!---->
+<!---->
+
+<!-- SEARCH BY ONLY UNIVERSITY NAME -->
+<div *ngIf="universitySearchStatByUniversity && !universitySearchStatByCountry"
+     id="cards"
+     class="page-layout simple fullwidth infinity-scroll-university"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="searchMoreDataScrollingByName()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="cards">
+
+            <!-- CARD 11 -->
+            <div class="card"
+                 *ngFor="let universityInfo of universityInfoListPage">
+
+                <!-- PREVIEW -->
+                <div class="card-preview">
+
+                    <div class="fuse-card">
+
+                        <div class="p-16"
+                             fxLayout="row"
+                             fxLayoutAlign="start center">
+                            <img class="w-40 h-40 border-radius-100"
+                                 [src]="('/picture/file/' + universityInfo.userId) | secure | async">
+<!--                                 [src]="('http://localhost:8700/picture/file/' + universityInfo.userId) | secure | async">-->
+
+                            <div class="ml-16">
+                                <div class="text-bold">
+                                    <span>
+                                        {{'World Rating #' + universityInfo.ratingId}}
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="text-bold">
+                                    <span *ngIf="universityInfo.countryName !== ''">
+                                        {{universityInfo.countryName + ' -'}}
+                                    </span>
+                                    <span *ngIf="universityInfo.cityName !== ''">
+                                        {{universityInfo.cityName}}
+                                    </span>
+                                </div>
+                                <div class="h5 text-bold secondary-text">
+                                    <span>
+                                        {{universityInfo.gradeName + ' = ' + universityInfo.grade + '%'}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img class="profile-bg-picture"
+                             [src]="('/pictureBg/file/' + universityInfo.userId) | secure | async">
+<!--                             [src]="('http://localhost:8700/pictureBg/file/' + universityInfo.userId) | secure | async">-->
+
+                        <div class="p-16">
+                            <div class="h1">
+                                {{universityInfo.universityName}}
+                            </div>
+                        </div>
+
+                        <div class="p-8 pt-0"
+                             fxLayout="row"
+                             fxLayoutAlign="space-between center">
+                            <div fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <a [routerLink]="'/user-information/' + universityInfo.userId">
+                                    <button mat-button
+                                            color="accent">
+                                        {{'UNIVERSITY_VIEW.OPEN_PROFILE'| translate}}
+                                    </button>
+                                </a>
+                                <a [href]="universityInfo.webPage"
+                                   target="_blank">
+                                    <button mat-button color="accent">
+                                        {{'UNIVERSITY_VIEW.WEB_PAGE'| translate}}
+                                    </button>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / PREVIEW -->
+
+            </div>
+            <!-- / CARD 11 -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+    <div *ngIf="scrollLoaderStat"
+         class="loader-size-university"
+         fxLayoutAlign="center center">
+        <img [src]="'assets/icons/waiting.gif'">
+    </div>
+
+</div>
+<!-- / SEARCH BY ONLY UNIVERSITY NAME -->
+
+<!-- SEARCH BY ONLY COUNTRY NAME -->
+<div *ngIf="universitySearchStatByCountry && !universitySearchStatByUniversity"
+     id="cards"
+     class="page-layout simple fullwidth infinity-scroll-university"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="searchMoreDataScrollingByCountry()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="cards">
+
+            <!-- CARD 11 -->
+            <div class="card"
+                 *ngFor="let universityInfo of universityInfoListPage">
+
+                <!-- PREVIEW -->
+                <div class="card-preview">
+
+                    <div class="fuse-card">
+
+                        <div class="p-16"
+                             fxLayout="row"
+                             fxLayoutAlign="start center">
+                            <img class="w-40 h-40 border-radius-100"
+                                 [src]="('/picture/file/' + universityInfo.userId) | secure | async">
+<!--                                 [src]="('http://localhost:8700/picture/file/' + universityInfo.userId) | secure | async">-->
+
+                            <div class="ml-16">
+                                <div class="text-bold">
+                                    <span>
+                                        {{'World Rating #' + universityInfo.ratingId}}
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="text-bold">
+                                    <span *ngIf="universityInfo.countryName !== ''">
+                                        {{universityInfo.countryName + ' -'}}
+                                    </span>
+                                    <span *ngIf="universityInfo.cityName !== ''">
+                                        {{universityInfo.cityName}}
+                                    </span>
+                                </div>
+                                <div class="h5 text-bold secondary-text">
+                                    <span>
+                                        {{universityInfo.gradeName + ' = ' + universityInfo.grade + '%'}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img class="profile-bg-picture"
+                             [src]="('/pictureBg/file/' + universityInfo.userId) | secure | async">
+<!--                             [src]="('http://localhost:8700/pictureBg/file/' + universityInfo.userId) | secure | async">-->
+
+                        <div class="p-16">
+                            <div class="h1">
+                                {{universityInfo.universityName}}
+                            </div>
+                        </div>
+
+                        <div class="p-8 pt-0"
+                             fxLayout="row"
+                             fxLayoutAlign="space-between center">
+                            <div fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <a [routerLink]="'/user-information/' + universityInfo.userId">
+                                    <button mat-button
+                                            color="accent">
+                                        {{'UNIVERSITY_VIEW.OPEN_PROFILE'| translate}}
+                                    </button>
+                                </a>
+                                <a [href]="universityInfo.webPage"
+                                   target="_blank">
+                                    <button mat-button
+                                            color="accent">
+                                        {{'UNIVERSITY_VIEW.WEB_PAGE'| translate}}
+                                    </button>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / PREVIEW -->
+
+            </div>
+            <!-- / CARD 11 -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+    <div *ngIf="scrollLoaderStat"
+         class="loader-size-university"
+         fxLayoutAlign="center center">
+        <img [src]="'assets/icons/waiting.gif'">
+    </div>
+
+</div>
+<!-- / SEARCH BY ONLY COUNTRY NAME -->
+
+<!-- SEARCH BY COUNTRY AND UNIVERSITY NAME -->
+<div *ngIf="universitySearchStatByCountry && universitySearchStatByUniversity"
+     id="cards"
+     class="page-layout simple fullwidth infinity-scroll-university"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="searchMoreDataScrollingByCountryAndUniversity()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="cards">
+
+            <!-- CARD 11 -->
+            <div class="card"
+                 *ngFor="let universityInfo of universityInfoListPage">
+
+                <!-- PREVIEW -->
+                <div class="card-preview">
+
+                    <div class="fuse-card">
+
+                        <div class="p-16"
+                             fxLayout="row"
+                             fxLayoutAlign="start center">
+                            <img class="w-40 h-40 border-radius-100"
+                                 [src]="('/picture/file/' + universityInfo.userId) | secure | async">
+<!--                                 [src]="('http://localhost:8700/picture/file/' + universityInfo.userId) | secure | async">-->
+
+                            <div class="ml-16">
+                                <div class="text-bold">
+                                    <span>
+                                        {{'World Rating #' + universityInfo.ratingId}}
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="text-bold">
+                                    <span *ngIf="universityInfo.countryName !== ''">
+                                        {{universityInfo.countryName + ' -'}}
+                                    </span>
+                                    <span *ngIf="universityInfo.cityName !== ''">
+                                        {{universityInfo.cityName}}
+                                    </span>
+                                </div>
+                                <div class="h5 text-bold secondary-text">
+                                    <span>
+                                        {{universityInfo.gradeName + ' = ' + universityInfo.grade + '%'}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img class="profile-bg-picture"
+                             [src]="('/pictureBg/file/' + universityInfo.userId) | secure | async">
+<!--                             [src]="('http://localhost:8700/pictureBg/file/' + universityInfo.userId) | secure | async">-->
+
+                        <div class="p-16">
+                            <div class="h1">
+                                {{universityInfo.universityName}}
+                            </div>
+                        </div>
+
+                        <div class="p-8 pt-0"
+                             fxLayout="row"
+                             fxLayoutAlign="space-between center">
+                            <div fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <a [routerLink]="'/user-information/' + universityInfo.userId">
+                                    <button mat-button
+                                            color="accent">
+                                        {{'UNIVERSITY_VIEW.OPEN_PROFILE'| translate}}
+                                    </button>
+                                </a>
+                                <a [href]="universityInfo.webPage"
+                                   target="_blank">
+                                    <button mat-button color="accent">
+                                        {{'UNIVERSITY_VIEW.WEB_PAGE'| translate}}
+                                    </button>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / PREVIEW -->
+
+            </div>
+            <!-- / CARD 11 -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+    <div *ngIf="scrollLoaderStat"
+         class="loader-size-university"
+         fxLayoutAlign="center center">
+        <img [src]="'assets/icons/waiting.gif'">
+    </div>
+
+</div>
+<!-- / SEARCH BY COUNTRY AND UNIVERSITY NAME -->

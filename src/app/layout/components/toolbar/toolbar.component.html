@@ -1,0 +1,293 @@
+<mat-toolbar class="p-0 mat-elevation-z1">
+
+    <div class="toolbar-background"
+         fxFlex
+         fxFill
+         fxLayout="row"
+         fxLayoutAlign="start center">
+        <div fxFlex
+             fxLayout="row"
+             fxLayoutAlign="start center">
+            <img class="avatar_toolbar mr-0 mr-sm-16 web-icon"
+                 [routerLink]="'/home'"
+                 (click)="choosePage('home')"
+                 src="assets/images/logos/WUK_logo.png">
+
+            <span>&nbsp;</span>
+
+            <!--            <div class="search-wrapper">-->
+            <!--                <div class="search"-->
+            <!--                     fxLayout="row"-->
+            <!--                     fxLayoutAlign="start center">-->
+            <!--                    <mat-icon *ngIf="!mouseFocusedStat">-->
+            <!--                        search-->
+            <!--                    </mat-icon>-->
+            <!--                    <input [(ngModel)]="searchName"-->
+            <!--                           (focus)="mouseFocused()"-->
+            <!--                           (blur)="mouseNotFocused()"-->
+            <!--                           [placeholder]="'COMPONENT_TOOLBAR.SEARCH'| translate">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            *ngIf="mouseFocusedStat">-->
+            <!--                        <mat-icon>-->
+            <!--                            navigate_next-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </div>-->
+
+            <!--            </div>-->
+
+            <!--            <div class="button-group-icon">-->
+            <!--                <a [routerLink]="'/home'"-->
+            <!--                   [ngClass]="{'choose-page': chooseHomeStat, 'no-choose-page': !chooseHomeStat}"-->
+            <!--                   (click)="choosePage('home')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.HOME_PAGE'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            home-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+
+            <!--                <a [routerLink]="'/universities-view'"-->
+            <!--                   [ngClass]="{'choose-page': chooseUniversityStat, 'no-choose-page': !chooseUniversityStat}"-->
+            <!--                   (click)="choosePage('university')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.UNIVERSITY_LIST'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            school-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+
+            <!--                <a *ngIf="yerasMail === yerasMailAccess"-->
+            <!--                   [routerLink]="'/adm-university'"-->
+            <!--                   [ngClass]="{'choose-page': chooseAdmUniversityStat, 'no-choose-page': !chooseAdmUniversityStat}"-->
+            <!--                   (click)="choosePage('AdmUniversity')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.ADD_NEW_UNIVERSITY_ACCOUNT'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            location_city-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+
+            <!--                <a [routerLink]="'/adm-teacher'"-->
+            <!--                   [ngClass]="{'choose-page': chooseAdmTeacherStat, 'no-choose-page': !chooseAdmTeacherStat}"-->
+            <!--                   (click)="choosePage('AdmTeacher')">-->
+            <!--                    <button *ngIf="universityInformationStat"-->
+            <!--                            mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.ADD_NEW_TEACHER'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            person_add-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+
+            <!--                <a [routerLink]="'/user-notification/' + userId"-->
+            <!--                   [ngClass]="{'choose-page': chooseNotificationStat, 'no-choose-page': !chooseNotificationStat}"-->
+            <!--                   *ngIf="followingResponseLength == 0 && followingRequestLength == 0"-->
+            <!--                   (click)="choosePage('notification')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.NOTIFICATION'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            notifications-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+            <!--                <a [routerLink]="'/user-notification/' + userId"-->
+            <!--                   [ngClass]="{'choose-page': chooseNotificationStat, 'notification-have': !chooseNotificationStat}"-->
+            <!--                   *ngIf="followingResponseLength !== 0 || followingRequestLength !== 0"-->
+            <!--                   (click)="choosePage('notification')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.NOTIFICATION'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            notifications_active-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+
+            <!--                <a [routerLink]="'/chatting/' + userId"-->
+            <!--                   [ngClass]="{'new-message-have': newMessageStat}"-->
+            <!--                   *ngIf="newMessageStat && chooseChattingStat"-->
+            <!--                   (click)="choosePage('chatting')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.CHATTING'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            contact_mail-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+            <!--                <a [routerLink]="'/chatting/' + userId"-->
+            <!--                   [ngClass]="{'choose-page': chooseChattingStat}"-->
+            <!--                   *ngIf="!newMessageStat && chooseChattingStat"-->
+            <!--                   (click)="choosePage('chatting')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.CHATTING'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            message-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+            <!--                <a [routerLink]="'/chatting/' + userId"-->
+            <!--                   [ngClass]="{'new-message-have': newMessageStat}"-->
+            <!--                   *ngIf="newMessageStat && !chooseChattingStat"-->
+            <!--                   (click)="choosePage('chatting')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.CHATTING'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            contact_mail-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+            <!--                <a [routerLink]="'/chatting/' + userId"-->
+            <!--                   [ngClass]="{'no-choose-page': !chooseChattingStat}"-->
+            <!--                   *ngIf="!newMessageStat && !chooseChattingStat"-->
+            <!--                   (click)="choosePage('chatting')">-->
+            <!--                    <button mat-icon-button-->
+            <!--                            class="router-button-icon"-->
+            <!--                            [matTooltip]="'COMPONENT_TOOLBAR.CHATTING'| translate">-->
+            <!--                        <mat-icon>-->
+            <!--                            message-->
+            <!--                        </mat-icon>-->
+            <!--                    </button>-->
+            <!--                </a>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class=""
+             fxFlex="0 1 auto"
+             fxLayout="row"
+             fxLayoutAlign="start center">
+
+            <button mat-button [matMenuTriggerFor]="userMenu"
+                    class="user-button">
+                <div fxLayout="row"
+                     fxLayoutAlign="center center">
+                    <img class="avatar mr-0 mr-sm-16"
+                         [src]="'assets/icons/bonus/incognito.jpg'">
+
+                    <span class="username mr-12 user-name-color"
+                          *ngIf="userInformationStat"
+                          fxShow.gt-sm>
+                        {{userLastName + ' ' + userFirstName}}
+                    </span>
+                    <span class="username mr-12 user-name-color"
+                          *ngIf="universityInformationStat"
+                          fxShow.gt-sm>
+                        {{universityName}}
+                    </span>
+                    <span class="username mr-12 user-name-color"
+                          *ngIf="teacherInformationStat"
+                          fxShow.gt-sm>
+                        {{userLastName + ' ' + userFirstName}}
+                    </span>
+                </div>
+            </button>
+
+            <mat-menu #userMenu="matMenu"
+                      [overlapTrigger]="false">
+
+
+                <!--                <button mat-menu-item-->
+                <!--                        [routerLink]="'/user-information/' + userId"-->
+                <!--                        (click)="choosePage('profile')">-->
+                <!--                    <mat-icon>-->
+                <!--                        account_circle-->
+                <!--                    </mat-icon>-->
+                <!--                    <span>-->
+                <!--                        {{'COMPONENT_TOOLBAR.PROFILE'| translate}}-->
+                <!--                    </span>-->
+                <!--                </button>-->
+
+                <!-- ONLY FOR DOCTOR -->
+                <button mat-menu-item class=""
+                        [routerLink]="'/doc-appointment'"
+                        (click)="choosePage('profile')">
+                    <mat-icon>
+                        add
+                    </mat-icon>
+                    <span>
+                        Add Appointment
+                    </span>
+                </button>
+                <!-- / ONLY FOR DOCTOR -->
+
+                <!-- ONLY FOR DOCTOR AND ADMIN -->
+<!--                <button mat-menu-item class=""-->
+<!--                        [routerLink]="'/user-settings'"-->
+<!--                        (click)="choosePage('profile')">-->
+<!--                    <mat-icon>-->
+<!--                        list_alt-->
+<!--                    </mat-icon>-->
+<!--                    <span>-->
+<!--                        List Of Appointment-->
+<!--                    </span>-->
+<!--                </button>-->
+                <!-- / ONLY FOR DOCTOR AND ADMIN -->
+
+                <!-- ONLY FOR ADMIN -->
+                <button mat-menu-item class=""
+                        [routerLink]="'/adm-teacher'"
+                        (click)="choosePage('profile')">
+                    <mat-icon>
+                        supervised_user_circle
+                    </mat-icon>
+                    <span>
+                        Add Doctor
+                    </span>
+                </button>
+                <!-- ONLY FOR ADMIN -->
+
+                <button mat-menu-item class=""
+                        [routerLink]="'/user-settings'"
+                        (click)="choosePage('profile')">
+                    <mat-icon>
+                        settings
+                    </mat-icon>
+                    <span>
+                        {{'COMPONENT_TOOLBAR.SETTINGS'| translate}}
+                    </span>
+                </button>
+
+                <button mat-menu-item class="" (click)="logout()">
+                    <mat-icon>
+                        exit_to_app
+                    </mat-icon>
+                    <span>
+                        {{'COMPONENT_TOOLBAR.LOGOUT'| translate}}
+                    </span>
+                </button>
+
+            </mat-menu>
+
+            <div class="toolbar-separator">
+            </div>
+
+            <div class="toolbar-separator">
+            </div>
+
+            <div class="toolbar-separator"
+                 *ngIf="!hiddenNavbar && rightNavbar"
+                 fxShow.gt-xs>
+            </div>
+
+            <button mat-icon-button
+                    class="navbar-toggle-button"
+                    *ngIf="!hiddenNavbar && rightNavbar"
+                    (click)="toggleSidebarOpen('navbar')">
+            </button>
+
+        </div>
+
+    </div>
+
+</mat-toolbar>

@@ -1,0 +1,102 @@
+<!-- COMMENT WRITER PICTURE AND LINK -->
+<a [routerLink]="'/user-information/' + commentObject.userId">
+<!--    <img [src]="('http://localhost:8700/picture/file/' + commentObject.userId) | secure | async" class="avatar">-->
+    <img [src]="('/picture/file/' + commentObject.userId) | secure | async" class="avatar">
+</a>
+<!-- / COMMENT WRITER PICTURE AND LINK -->
+
+<!-- MAIN CONTENT -->
+<div fxFlex
+     class="comment-object">
+
+    <!-- VIEW COMMENT -->
+    <div class="comment-message-bg">
+        <div fxLayout="row"
+             fxLayoutAlign="start center">
+            <span class="username">
+                {{commentObject.userName}}
+            </span>
+        </div>
+
+        <div class="comment-message">
+            {{commentObject.commentMessage}}
+        </div>
+    </div>
+    <!-- / VIEW COMMENT -->
+
+    <!-- CLICK WRITE REPLY COMMENT -->
+    <div class="actions border-bottom"
+         fxLayout="row"
+         fxLayoutAlign="space-between center">
+        <a class="reply-button"
+           (click)="replyComment()">
+            {{'USER_INFORMATION_COMMENT.REPLY'| translate}}
+        </a>
+        <span class="time"
+              fxLayoutAlign="end end">
+            {{commentObject.commentDate | date: 'dd MMMM yyyy - hh:mm'}}
+        </span>
+    </div>
+    <!-- / CLICK WRITE REPLY COMMENT -->
+
+    <!-- CLICK SHOW A REPLY COMMENT -->
+    <div class="comment-count"
+         fxLayout="row"
+         fxLayoutAlign="start center"
+         *ngIf="commentReplyLength !== 0"
+         (click)="showReplyComments()">
+        {{'USER_INFORMATION_COMMENT.SHOW_REPLY_COMMENT'| translate}}
+        <mat-icon class="s-16">
+            keyboard_arrow_down
+        </mat-icon>
+    </div>
+    <!-- / CLICK SHOW A REPLY COMMENT -->
+
+    <!-- READ A REPLY COMMENT -->
+    <div class="show-reply-comment"
+         *ngIf="showReplyCommentClick">
+        <div fxFlexFill
+             *ngFor="let commentReply of commentReplyList">
+            <app-comment-publication-reply
+                [commentReplyObject]="commentReply"
+                (commentReplyObjectEvent)="createReplyCommentToReply($event)">
+            </app-comment-publication-reply>
+
+        </div>
+    </div>
+    <!-- / READ A REPLY COMMENT -->
+
+    <!-- WRITE A REPLY COMMENT -->
+    <div class="reply"
+         fxLayout="row"
+         fxFlexFill
+         *ngIf="replyCommentWriteClick">
+
+<!--        <img [src]="('http://localhost:8700/picture/file/' + localUserId) | secure | async" class="avatar">-->
+        <img [src]="('/picture/file/' + localUserId) | secure | async" class="avatar">
+        <form fxFlex>
+                <textarea name="writeReplyComment"
+                          [placeholder]="commentObject.userName + ','"
+                          [(ngModel)]="commentReplyObject.commentMessage">
+                </textarea>
+            <button mat-button
+                    class="post-comment-button"
+                    aria-label="Cancel"
+                    (click)="replyCommentWriteClick = !replyCommentWriteClick">
+                {{'USER_INFORMATION_COMMENT.CANCEL'| translate}}
+            </button>
+            <span>&nbsp;</span>
+            <button mat-raised-button
+                    color="accent"
+                    class="post-comment-button"
+                    aria-label="Write"
+                    [disabled]="!commentReplyObject.commentMessage"
+                    (click)="createReplyComment()">
+                {{'USER_INFORMATION_COMMENT.WRITE'| translate}}
+            </button>
+        </form>
+    </div>
+    <!-- / WRITE A REPLY COMMENT -->
+
+</div>
+<!-- / MAIN CONTENT -->

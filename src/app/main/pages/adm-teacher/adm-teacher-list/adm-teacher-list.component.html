@@ -1,0 +1,138 @@
+<!--<div id="profile"-->
+<!--     class="page-layout simple tabbed"-->
+<!--     *ngIf="universityAccountStat">-->
+<div id="profile"
+     class="page-layout simple tabbed">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <div class="about-content"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="35">
+
+                <!-- TEACHER LIST -->
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+                    <!-- TEACHER HEADER -->
+                    <header class="primary">
+                        <div class="title">
+                            {{'ADM_TEACHER.TEACHERS'| translate}}
+                        </div>
+                    </header>
+                    <!-- / TEACHER HEADER -->
+
+                    <!-- SEARCH -->
+                    <div fxLayout="row"
+                         fxLayoutAlign="center center"
+                         fxFlex>
+
+                        <div class="search-wrapper">
+                            <div class="search"
+                                 fxFlex
+                                 fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <mat-icon *ngIf="!mouseFocusedStat">
+                                    search
+                                </mat-icon>
+                                <input [(ngModel)]="searchName"
+                                       (focus)="mouseFocused()"
+                                       (blur)="mouseNotFocused()"
+                                       [placeholder]="'ADM_TEACHER.SEARCH_TEACHERS'| translate"
+                                       (keydown.enter)="searchByName(0, 5)">
+                                <button mat-icon-button
+                                        *ngIf="mouseFocusedStat"
+                                        (click)="searchByName(0, 5)">
+                                    <mat-icon>
+                                        send
+                                    </mat-icon>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- / SEARCH -->
+
+                    <!-- TEACHER INFORMATION VIEW -->
+                    <div class="content">
+                        <div class="info-line"
+                             *ngFor="let teacherInformation of teacherInformationList">
+                            <div class="h2 border-bottom reply-button">
+                                <a [routerLink]="'/user-information/' + teacherInformation.userId">
+                                    {{teacherInformation.lastName + ' ' + teacherInformation.firstName}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <mat-paginator *ngIf="searchType === 'all'"
+                                   [pageSizeOptions]="[5, 10]"
+                                   [length]="collectionSize"
+                                   showFirstLastButtons
+                                   (page)="getInfo($event.pageIndex, $event.pageSize)">
+                    </mat-paginator>
+
+                    <mat-paginator *ngIf="searchType === 'name'"
+                                   [pageSizeOptions]="[5, 10]"
+                                   [length]="collectionSize"
+                                   showFirstLastButtons
+                                   (page)="searchByName($event.pageIndex, $event.pageSize)">
+                    </mat-paginator>
+                    <!-- / PAGINATION -->
+                    <!-- / TEACHER INFORMATION VIEW -->
+
+                </div>
+                <!-- / EDUCATION INFORMATION CONTENT -->
+
+            </div>
+
+            <!-- FOLLOWING -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="65">
+
+                <div class="profile-box friends"
+                     fxLayout="column">
+
+                    <header class="primary"
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="title">
+                            {{'ADM_TEACHER.CREATE_TEACHER_ACCOUNT'| translate}}
+                        </div>
+                    </header>
+
+                    <div class="content"
+                         fxLayout="row wrap">
+                        <!-- TEACHER INFORMATION VIEW -->
+                        <div class="content">
+                            <div class="info-line">
+                                <app-teacher-registration
+                                    (refreshAccount)="refreshFromChanging()">
+                                </app-teacher-registration>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- / FOLLOWING -->
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

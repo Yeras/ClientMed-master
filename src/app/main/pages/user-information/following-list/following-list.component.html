@@ -1,0 +1,43 @@
+<div class="group border-bottom"
+     fxLayout="row"
+     fxLayoutAlign="space-between center"
+     *ngFor="let followingUser of followingUserInformationList">
+
+    <a [routerLink]="'/user-information/' + followingUser.followedId">
+        <div fxLayout="row"
+             fxLayoutAlign="start center">
+
+            <div class="logo">
+                <img class="avatar"
+                     [src]="('/picture/file/' + followingUser.followedId) | secure | async">
+<!--                     [src]="('http://localhost:8700/picture/file/' + followingUser.followedId) | secure | async">-->
+            </div>
+
+            <div>
+                <div class="name">
+                    {{followingUser.userLName + ' ' + followingUser.userFName}}
+                </div>
+                <!--            <div class="category">Group Category</div>-->
+                <!--            <div class="members">10 people</div>-->
+
+            </div>
+        </div>
+    </a>
+
+    <!--    <a [routerLink]="'/user-information/' + followerUser.userId">-->
+    <!--        <button mat-raised-button>-->
+    <!--            Profile-->
+    <!--        </button>-->
+    <!--    </a>-->
+
+</div>
+
+<!-- COUNT OF FOLLOWER -->
+<div fxLayoutAlign="end end">
+    <a [routerLink]="'/user-following-full/' + userId">
+        <button mat-raised-button>
+            {{'USER_INFORMATION_FOLLOWING_LIST.FOLLOWING'| translate}} {{'(' + followingSize + ')'}}
+        </button>
+    </a>
+</div>
+<!-- / COUNT OF FOLLOWER -->

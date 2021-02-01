@@ -1,0 +1,125 @@
+<div id="profile-university"
+     class="page-layout simple tabbed infinity-scroll-think-about"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="searchMoreDataScrollingAboutThink()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- USER WRITE -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="60">
+                <div class="profile-box info-box general"
+                     fxLayout="column"
+                     *ngIf="!myProfileStat">
+
+                    <header fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <img class="avatar"
+                             [src]="profilePhoto | secure | async">
+                        <button mat-raised-button
+                                class="button-create-publication"
+                                aria-label="create"
+                                (click)="createWhatYouThink()"
+                                [disabled]="!followingStat">
+                            {{'USER_THINK_ABOUT_TEACHER.WHAT_DO_YOU_THINK'| translate}}
+                        </button>
+                    </header>
+                </div>
+
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+
+                    <!-- TEACHER ACHIEVEMENT INFO VIEW -->
+                    <div class="content">
+
+                        <div *ngFor="let teacherAboutThink of teacherAboutThinkToFront">
+                            <div class="user"
+                                 fxLayout="row"
+                                 fxLayoutAlign="start center">
+                                <img class="avatar"
+                                     *ngIf="teacherAboutThink.incognitoUserStat === 1"
+                                     [src]="'assets/icons/bonus/incognito.jpg'">
+                                <a [routerLink]="'/user-information/' + teacherAboutThink.userId">
+                                    <img class="avatar"
+                                         *ngIf="teacherAboutThink.incognitoUserStat === 0"
+                                         [src]="('/picture/file/' + teacherAboutThink.userId) | secure | async">
+<!--                                         [src]="('http://localhost:8700/picture/file/' + teacherAboutThink.userId) | secure | async">-->
+                                </a>
+                                <div fxLayout="column">
+                                    <div class="name user-name">
+                                        {{teacherAboutThink.lastName + ' ' + teacherAboutThink.firstName}}
+                                    </div>
+                                    <div class="title">
+                                    <span class="username">
+                                        {{teacherAboutThink.writeDate | date: 'dd MMMM yyyy - hh:mm'}}
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <!-- MESSAGE IS HERE -->
+                            <div class="about-teacher-area border-bottom">
+                                <blockquote>
+                                    <p>
+                                        {{teacherAboutThink.aboutThink}}
+                                    </p>
+                                </blockquote>
+                            </div>
+                            <!-- / MESSAGE IS HERE -->
+                        </div>
+
+                    </div>
+                    <!-- / TEACHER ACHIEVEMENT INFO VIEW -->
+                </div>
+            </div>
+            <!-- / USER WRITE -->
+
+            <!-- ADVERTISEMENT -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="40">
+
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header class="content"
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="h2 info-line university-name">
+                            <img src="assets/images/backgrounds/Advertisement.png">
+<!--                            Advertisement-->
+                        </div>
+                    </header>
+
+                </div>
+
+<!--                &lt;!&ndash; ADVERTISEMENT INFO &ndash;&gt;-->
+<!--                <div class="content">-->
+<!--                    Static advertisement information-->
+<!--                </div>-->
+<!--                &lt;!&ndash; / ADVERTISEMENT INFO &ndash;&gt;-->
+
+            </div>
+            <!-- / ADVERTISEMENT -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

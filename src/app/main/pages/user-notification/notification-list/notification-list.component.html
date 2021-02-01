@@ -1,0 +1,271 @@
+<div id="profile"
+     class="page-layout simple tabbed infinity-scroll-notification"
+     infiniteScroll
+     fusePerfectScrollbar
+     [infiniteScrollDistance]="0.5"
+     (scrolled)="findMoreDataScrolling()"
+     [scrollWindow]="false">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- NOTIFICATION LIST -->
+            <div class="about-content"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="70">
+
+                <!-- REQUEST NOTIFICATION LIST -->
+                <div class="profile-box info-box work"
+                     fxLayout="column"
+                     *ngIf="requestNotificationStat">
+
+                    <!-- REQUEST NOTIFICATION HEADER -->
+                    <header>
+                        <div class="title">
+                            {{'USER_NOTIFICATION.REQUEST_NOTIFICATION'| translate}}
+                        </div>
+                    </header>
+                    <!-- / REQUEST NOTIFICATION HEADER -->
+
+                    <!-- REQUEST NOTIFICATION VIEW -->
+                    <div class="content"
+                         fxLayout="row wrap">
+                        <div class="content">
+                            <div *ngIf="followingRequestLength !== 0">
+                                <div class="group"
+                                     fxLayout="row"
+                                     fxLayoutAlign="space-between center"
+                                     *ngFor="let followingRequest of followingRequestList">
+
+                                    <div fxLayout="row"
+                                         fxLayoutAlign="start center">
+
+                                        <div class="logo">
+                                            <a [routerLink]="'/user-information/' + followingRequest.fromUserId">
+                                                <img class="avatar"
+                                                     [src]="('/picture/file/' + followingRequest.fromUserId) | secure | async">
+<!--                                                     [src]="('http://localhost:8700/picture/file/' + followingRequest.fromUserId) | secure | async">-->
+                                            </a>
+                                        </div>
+
+                                        <div>
+                                            <div class="name">
+                                                <a [routerLink]="'/user-information/' + followingRequest.fromUserId">
+                                                    {{followingRequest.userLName + ' ' + followingRequest.userFName}}
+                                                </a>
+                                            </div>
+                                            <div class="category">
+                                                {{followingRequest.actionDate | date: 'dd MMMM yyyy - hh:mm'}}
+                                            </div>
+                                            <div class="members"
+                                                 *ngIf="!universityUserAccount">
+                                                {{'USER_NOTIFICATION.WANT_FOLLOW_YOU'| translate}}
+                                            </div>
+                                            <div class="members"
+                                                 *ngIf="universityUserAccount">
+                                                {{'USER_NOTIFICATION.WANT_BECOME_TEACHER'| translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="">
+                                        <button mat-raised-button
+                                                *ngIf="!universityUserAccount"
+                                                (click)="acceptFollower(followingRequest.fromUserId)">
+                                            {{'USER_NOTIFICATION.ACCEPT'| translate}}
+                                        </button>
+                                        <button mat-raised-button
+                                                *ngIf="universityUserAccount"
+                                                (click)="acceptBecomingTeacherRequest(followingRequest.fromUserId)">
+                                            {{'USER_NOTIFICATION.ACCEPT'| translate}}
+                                        </button>
+                                        <span>&nbsp;</span>
+                                        <button mat-raised-button
+                                                (click)="removeFollower(followingRequest.fromUserId)">
+                                            {{'USER_NOTIFICATION.REMOVE'| translate}}
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div *ngIf="followingRequestLength === 0">
+                                <div class="group"
+                                     fxLayout="row"
+                                     fxLayoutAlign="space-between center">
+
+                                    <div class="h1"
+                                         fxLayout="row"
+                                         fxLayoutAlign="start center">
+                                        <span>
+                                            {{'USER_NOTIFICATION.NO_MESSAGE_REQUEST'| translate}}
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / REQUEST NOTIFICATION VIEW -->
+
+                </div>
+                <!-- / REQUEST NOTIFICATION LIST -->
+
+                <!-- RESPONSE NOTIFICATION LIST -->
+                <div class="profile-box info-box work"
+                     fxLayout="column"
+                     *ngIf="responseNotificationStat">
+
+                    <!-- RESPONSE NOTIFICATION HEADER -->
+                    <header>
+                        <div class="title">
+                            {{'USER_NOTIFICATION.RESPONSE_NOTIFICATION'| translate}}
+                        </div>
+                    </header>
+                    <!-- / RESPONSE NOTIFICATION HEADER -->
+
+                    <!-- RESPONSE NOTIFICATION VIEW -->
+                    <div class="content"
+                         fxLayout="row wrap">
+                        <div class="content">
+                            <div *ngIf="followingResponseLength !== 0">
+                                <div class="group"
+                                     fxLayout="row"
+                                     fxLayoutAlign="space-between center"
+                                     *ngFor="let followingResponse of followingResponseList">
+
+                                    <div fxLayout="row"
+                                         fxLayoutAlign="start center">
+
+                                        <div class="logo">
+                                            <a [routerLink]="'/user-information/' + followingResponse.toUserId">
+                                                <img class="avatar"
+                                                     [src]="('/picture/file/' + followingResponse.toUserId) | secure | async">
+<!--                                                     [src]="('http://localhost:8700/picture/file/' + followingResponse.toUserId) | secure | async">-->
+                                            </a>
+                                        </div>
+
+                                        <div>
+                                            <div class="name">
+                                                <a [routerLink]="'/user-information/' + followingResponse.toUserId">
+                                                    {{followingResponse.userLName + ' ' + followingResponse.userFName}}
+                                                </a>
+                                            </div>
+                                            <div class="category">
+                                                {{followingResponse.actionDate | date: 'dd MMMM yyyy - hh:mm'}}
+                                            </div>
+                                            <div class="members">
+                                                {{'USER_NOTIFICATION.GIVE_ACCESS'| translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button mat-raised-button
+                                            (click)="removeResponseMessage(followingResponse.toUserId)">
+                                        {{'USER_NOTIFICATION.REMOVE_MESSAGE'| translate}}
+                                    </button>
+
+                                </div>
+                            </div>
+
+                            <div *ngIf="followingResponseLength == 0">
+                                <div class="group"
+                                     fxLayout="row"
+                                     fxLayoutAlign="space-between center">
+
+                                    <div class="h1"
+                                         fxLayout="row"
+                                         fxLayoutAlign="start center">
+                                        <span>
+                                            {{'USER_NOTIFICATION.NO_MESSAGE_RESPONSE'| translate}}
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / RESPONSE NOTIFICATION VIEW -->
+
+                </div>
+                <!-- / RESPONSE NOTIFICATION LIST -->
+
+            </div>
+            <!-- / NOTIFICATION LIST -->
+
+            <!-- LIST OF BUTTON -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="30">
+
+                <div class="profile-box friends"
+                     fxLayout="column">
+
+                    <header fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="title">
+                            {{'USER_NOTIFICATION.NOTIFICATION'| translate}}
+                        </div>
+                    </header>
+
+                    <div class="content border-bottom"
+                         fxLayout="row wrap">
+                        <div class="content">
+                            <div class="info-line"
+                                 [ngClass]="{'choose-notification': requestNotificationStat}">
+                                <button mat-button
+                                        (click)="chooseRequestNotification()">
+                                    {{'USER_NOTIFICATION.REQUEST_NOTIFICATION'| translate}}
+                                    <span>
+                                        &nbsp;
+                                    </span>
+                                    <mat-icon *ngIf="followingRequestLength !== 0">
+                                        notifications_active
+                                    </mat-icon>
+                                </button>
+                            </div>
+
+                            <br>
+
+                            <div class="info-line"
+                                 [ngClass]="{'choose-notification': responseNotificationStat}">
+                                <button mat-button
+                                        (click)="chooseResponseNotification()">
+                                    {{'USER_NOTIFICATION.RESPONSE_NOTIFICATION'| translate}}
+                                    <span>
+                                        &nbsp;
+                                    </span>
+                                    <mat-icon *ngIf="followingResponseLength !== 0">
+                                        notifications_active
+                                    </mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content"
+                         fxLayout="row wrap">
+                        <div class="content">
+                            <!--                            Advertisement-->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- / LIST OF BUTTON -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

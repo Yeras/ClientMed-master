@@ -1,0 +1,155 @@
+<div *ngIf="removeType === 'removeRequest'">
+    <div class="fuse-widget-front">
+
+        <div class="pb-16 wrapper border-bottom">
+            <div class="h2 secondary-text title">
+                <strong>
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.REMOVE_REQUEST_TO_FOLLOW'| translate}}
+                </strong>
+            </div>
+        </div>
+        <br>
+
+        <div class="message-box info">
+        <span>
+            {{'USER_INFORMATION_UNFOLLOW_REMOVE.ARE_YOU_SURE_REMOVE_REQUEST'| translate}}
+        </span>
+        </div>
+        <br>
+
+        <div fxLayout="row"
+             fxLayoutAlign="end">
+            <div>
+                <button mat-button
+                        (click)="activeModal.close()">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.CANCEL'| translate}}
+                </button>
+                <span>&nbsp;</span>
+                <button mat-raised-button
+                        class="accent"
+                        (click)="activeModal.close('Unfollow')">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.REMOVE'| translate}}
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="removeType === 'removeFollow'">
+    <div class="fuse-widget-front">
+
+        <div class="pb-16 wrapper border-bottom">
+            <div class="h2 secondary-text title">
+                <strong>
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.UNFOLLOW'| translate}}
+                </strong>
+            </div>
+        </div>
+        <br>
+
+        <div class="message-box info">
+        <span>
+            {{'USER_INFORMATION_UNFOLLOW_REMOVE.ARE_YOU_SURE_TO_UNFOLLOW'| translate}}
+        </span>
+        </div>
+        <br>
+
+        <div fxLayout="row"
+             fxLayoutAlign="end">
+            <div>
+                <button mat-button
+                        (click)="activeModal.close()">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.CANCEL'| translate}}
+                </button>
+                <span>&nbsp;</span>
+                <button mat-raised-button
+                        class="accent"
+                        (click)="activeModal.close('Unfollow')">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.UNFOLLOW'| translate}}
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="removeType === 'removeRequestTeacher'">
+    <div class="fuse-widget-front">
+
+        <div class="pb-16 wrapper border-bottom">
+            <div class="h2 secondary-text title">
+                <strong>
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.REMOVE_REQUEST_BECOME_TEACHER'| translate}}
+                </strong>
+            </div>
+        </div>
+        <br>
+
+        <div class="message-box info">
+        <span>
+            {{'USER_INFORMATION_UNFOLLOW_REMOVE.ARE_YOU_SURE_REMOVE_BECOME_TEACHER'| translate}}
+        </span>
+        </div>
+        <br>
+
+        <div fxLayout="row"
+             fxLayoutAlign="end">
+            <div>
+                <button mat-button
+                        (click)="activeModal.close()">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.CANCEL'| translate}}
+                </button>
+                <span>&nbsp;</span>
+                <button mat-raised-button
+                        class="accent"
+                        (click)="activeModal.close('Remove')">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.REMOVE'| translate}}
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="removeType === 'leaveUniversity'">
+    <div class="fuse-widget-front">
+
+        <div class="pb-16 wrapper border-bottom">
+            <div class="h2 secondary-text title">
+                <strong>
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.LEAVE_FROM_UNIVERSITY'| translate}}
+                </strong>
+            </div>
+        </div>
+        <br>
+
+        <div class="message-box info">
+        <span>
+            {{'USER_INFORMATION_UNFOLLOW_REMOVE.ARE_YOU_SURE_LEAVE_UNIVERSITY'| translate}}
+        </span>
+        </div>
+        <br>
+
+        <div fxLayout="row"
+             fxLayoutAlign="end">
+            <div>
+                <button mat-button
+                        (click)="activeModal.close()">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.CANCEL'| translate}}
+                </button>
+                <span>&nbsp;</span>
+                <button mat-raised-button
+                        class="accent"
+                        (click)="activeModal.close('Leave')">
+                    {{'USER_INFORMATION_UNFOLLOW_REMOVE.REMOVE'| translate}}
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,20 @@
+@mixin university-list-page($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    app-university-list {
+
+        .content {
+
+            &.source {
+
+                .cards {
+
+                    .card {
+                        border-bottom-color: map-get($foreground, divider);
+                    }
+                }
+            }
+        }
+    }
+}

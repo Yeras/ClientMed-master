@@ -1,0 +1,35 @@
+<div class="info-line">
+    <!-- UNIVERSITY AND FACULTY NAME -->
+    <div class="info">
+        <span *ngIf="universityName !== null"
+              class="title">
+            {{universityName}}
+        </span>
+        <mat-icon class="s-16 ml-4"
+                  *ngIf="universityName !== null">
+            class
+        </mat-icon>
+    </div>
+    <!-- / UNIVERSITY AND FACULTY NAME -->
+
+    <!-- COUNTRY AND CITY NAME -->
+    <div class="info">
+        <span *ngIf="countryName !== null"
+              class="title">
+            {{countryName}}
+        </span>
+        <span *ngIf="countryName !== null && cityName !== null">
+            {{'- '}}
+        </span>
+        <span *ngIf="cityName !== null">
+            {{cityName}}
+        </span>
+        <mat-icon class="s-16 ml-4"
+                  *ngIf="countryName !== null || cityName !== null">
+            location_on
+        </mat-icon>
+    </div>
+    <!-- / COUNTRY AND CITY NAME -->
+
+</div>
+<hr>

@@ -1,0 +1,118 @@
+<!-- STATIC GRADE -->
+<div *ngIf="typeOfGrade==='static'">
+
+    <div fxLayoutAlign="center center">
+        <dl>
+            <dt>
+                {{'USER_INFORMATION_UNIVERSITY_VIEW.STATIC_GRADE'| translate}}
+            </dt>
+            <dd>
+                {{'USER_INFORMATION_UNIVERSITY_VIEW.CHOOSE_STATIC_GRADE_UNIVERSITY'| translate}}
+            </dd>
+            <div class="message-box info">
+                <dd>
+                    {{'USER_INFORMATION_UNIVERSITY_VIEW.REMINDER_AFTER_CLICK'| translate}}
+                </dd>
+            </div>
+        </dl>
+    </div>
+
+</div>
+
+<div *ngIf="typeOfGrade==='static'">
+    <!-- POINT SELECTOR -->
+    <mat-form-field fxFlex="40"
+                    class="px-8">
+        <mat-label>
+            {{'USER_INFORMATION_UNIVERSITY_VIEW.GRADE_LIST'| translate}}
+        </mat-label>
+        <mat-select [(ngModel)]="userChooseGrade"
+                    [value]="userChooseGrade">
+            <mat-option *ngFor="let gradeSystem of gradeSystemList"
+                        [value]="gradeSystem.points">
+                <!--                {{gradeSystem.gradeName + ' = ' + gradeSystem.points + '%'}}-->
+                {{gradeSystem.gradeName}}
+            </mat-option>
+        </mat-select>
+        <mat-icon matSuffix
+                  class="secondary-text">
+            grade
+        </mat-icon>
+    </mat-form-field>
+    <!-- / POINT SELECTOR -->
+    <br>
+</div>
+
+<div *ngIf="typeOfGrade==='static'"
+     fxLayoutAlign="end end">
+    <button mat-button
+            (click)="backToInfoPage()">
+        {{'USER_INFORMATION_UNIVERSITY_VIEW.BACK'| translate}}
+    </button>
+    <span>
+        &nbsp;
+    </span>
+    <button mat-raised-button
+            class="accent"
+            [disabled]="!userChooseGrade"
+            (click)="gradeChoose()">
+        {{'USER_INFORMATION_UNIVERSITY_VIEW.PUT_GRADE'| translate}}
+    </button>
+</div>
+<!-- / STATIC GRADE -->
+
+<!-- CUSTOM GRADE -->
+<div *ngIf="typeOfGrade==='custom'">
+
+    <div fxLayoutAlign="center center">
+        <dl>
+            <dt>
+                {{'USER_INFORMATION_UNIVERSITY_VIEW.CUSTOM_GRADE'| translate}}
+            </dt>
+            <dd>
+                {{'USER_INFORMATION_UNIVERSITY_VIEW.CUSTOM_GRADE_DESCRIPTION'| translate}}
+            </dd>
+            <div class="message-box info">
+                <dd>
+                    {{'USER_INFORMATION_UNIVERSITY_VIEW.REMINDER_AFTER_CLICK'| translate}}
+                </dd>
+            </div>
+        </dl>
+    </div>
+
+</div>
+
+<div *ngIf="typeOfGrade==='custom'">
+    <!-- POINT SELECTOR -->
+    <mat-form-field fxFlex="40"
+                    class="px-8">
+        <mat-label>
+            {{'USER_INFORMATION_UNIVERSITY_VIEW.YOUR_GRADE'| translate}}
+        </mat-label>
+        <input matInput
+               type="number"
+               [placeholder]="'USER_INFORMATION_UNIVERSITY_VIEW.YOUR_GRADE'| translate"
+               (change)="checkInputGrade(userChooseGrade)"
+               [(ngModel)]="userChooseGrade">
+    </mat-form-field>
+    <!-- / POINT SELECTOR -->
+    <br>
+</div>
+
+<div *ngIf="typeOfGrade==='custom'"
+     fxLayoutAlign="end end">
+    <button mat-button
+            (click)="backToInfoPage()">
+        {{'USER_INFORMATION_UNIVERSITY_VIEW.BACK'| translate}}
+    </button>
+    <span>
+        &nbsp;
+    </span>
+    <button mat-raised-button
+            class="accent"
+            [disabled]="!userChooseGrade || !userChooseGradeState"
+            (click)="gradeChoose()">
+        {{'USER_INFORMATION_UNIVERSITY_VIEW.PUT_GRADE'| translate}}
+    </button>
+</div>
+<!-- / CUSTOM GRADE -->

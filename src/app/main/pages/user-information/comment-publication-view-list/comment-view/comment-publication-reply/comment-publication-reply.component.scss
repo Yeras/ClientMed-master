@@ -1,0 +1,59 @@
+.comment-object {
+    display: inline-block;
+    margin-bottom: 24px !important;
+
+    .username {
+        font-weight: bold;
+        margin-right: 6px;
+        margin-left: 15px;
+    }
+
+    .comment-message-bg {
+        display: block;
+        background-color: #f0f2f5;
+        border-radius: 15px;
+    }
+
+    .comment-message {
+        margin-left: 15px;
+    }
+
+    .actions {
+        margin-top: 8px;
+
+        .report-button {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .reply-button {
+            margin-right: 16px;
+            cursor: pointer;
+        }
+    }
+
+    .comment-count {
+        margin-bottom: 16px;
+        cursor: pointer;
+
+        mat-icon {
+            margin-left: 8px;
+        }
+    }
+}
+
+.reply {
+
+    form {
+
+        textarea {
+            width: 100% !important;
+            min-height: 72px;
+            padding: 8px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            border: 1px solid;
+            border-radius: 4px;
+        }
+    }
+}

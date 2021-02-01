@@ -1,0 +1,276 @@
+@import "src/@fuse/scss/fuse";
+
+.infinity-scroll-chat-list {
+    height: 80vh;
+}
+
+.grade-list-content {
+    max-height: 35vh;
+}
+
+//HEADER
+#profile {
+
+    .header {
+        height: 15%;
+        min-height: 15%;
+        max-height: 15%;
+        //background: url('/assets/images/backgrounds/worldMap.jpg') no-repeat 0 45%;
+        background: no-repeat 0 45%;
+        background-size: cover;
+
+        .profile-image {
+            margin-right: 24px;
+
+            @include media-breakpoint('sm') {
+                margin: 0 0 16px 0;
+            }
+        }
+
+        .name {
+            font-size: 34px;
+            color: #FFFFFF;
+
+            @include media-breakpoint('sm') {
+                margin-bottom: 32px;
+            }
+        }
+
+        .actions {
+
+            button {
+                text-transform: none;
+                padding: 0 16px;
+                margin: 0 0 0 8px;
+            }
+        }
+    }
+
+    .search-wrapper {
+        width: 100%;
+        border-radius: 28px;
+        overflow: hidden;
+        background-color: white;
+        @include mat-elevation(1);
+
+        .search {
+            width: 100%;
+
+            input {
+                width: 100%;
+                min-height: 48px;
+                max-height: 48px;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
+    .content {
+        flex: 1;
+
+        mat-tab-group {
+            height: 100%;
+
+            .mat-tab-body-wrapper {
+                flex-grow: 1;
+            }
+        }
+
+    }
+
+    .content-width-size {
+        width: 50%;
+    }
+}
+
+//CONTENT
+app-university-rating {
+
+    #about {
+        max-width: 1200px;
+
+        .about-content {
+
+            .general {
+
+                .location {
+
+                    mat-icon {
+                        line-height: 13px !important;
+                    }
+                }
+            }
+
+            .work {
+
+                .job {
+
+                    .company {
+                        padding: 0 16px 0 0;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .about-sidebar {
+            padding-left: 32px;
+
+            @include media-breakpoint('sm') {
+                padding: 8px
+            }
+
+            .friends {
+
+                .content {
+
+                    .friend {
+                        padding: 4px;
+
+                        img {
+                            border-radius: 4px;
+                        }
+                    }
+                }
+            }
+
+            .groups {
+
+                .content {
+
+                    .group {
+                        margin-bottom: 24px;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        .logo {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 48px;
+                            height: 48px;
+                            font-size: 21px;
+                            line-height: normal;
+                            border-radius: 50%;
+                            margin-right: 16px;
+                        }
+
+                        .name {
+                            font-weight: 600;
+                            font-size: 15px;
+                        }
+
+                        .members {
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Profile boxes
+    .profile-box {
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        @include mat-elevation(2);
+
+        header {
+            padding: 16px;
+
+            .title {
+                font-size: 17px;
+
+                .button-position {
+                    bottom: 4px;
+                }
+            }
+
+            .more {
+                cursor: pointer;
+            }
+        }
+
+        .content {
+            padding: 16px;
+
+            .group {
+                margin-bottom: 24px;
+
+                .view-message-width {
+                    width: 100%;
+                }
+
+                .view-message-width:hover {
+                    width: 100%;
+                    background-color: #F5F5F5;
+                }
+
+                .message-to-me {
+                    font-weight: bold;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                .logo {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 48px;
+                    height: 48px;
+                    font-size: 21px;
+                    line-height: normal;
+                    border-radius: 50%;
+                    margin-right: 16px;
+                }
+
+                .name {
+                    font-weight: 600;
+                    font-size: 15px;
+                }
+
+                .members {
+                    margin-top: 8px;
+                }
+            }
+        }
+
+        footer {
+            padding: 8px;
+            border-top: 1px solid;
+        }
+
+        &.info-box {
+
+            .info-line {
+                margin-bottom: 24px;
+
+                .reply-button {
+                    margin-right: 16px;
+                    cursor: pointer;
+                }
+
+                .title {
+                    font-size: 15px;
+                    font-weight: 600;
+                    padding-bottom: 4px;
+
+                }
+
+                .info {
+
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

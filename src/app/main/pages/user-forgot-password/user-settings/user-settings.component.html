@@ -1,0 +1,318 @@
+<div id="profile-setting"
+     class="page-layout simple tabbed infinity-scroll-notification"
+     infiniteScroll
+     fusePerfectScrollbar>
+
+    <!-- CONTENT -->
+    <div class="content-setting">
+
+        <div id="about-setting"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- SETTINGS CONTENT -->
+            <div class="about-content-profile-setting"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="70">
+
+                <!-- SETTINGS VIEW -->
+                <div class="profile-box-setting info-box-setting work-setting"
+                     fxLayout="column">
+
+                    <!-- SETTINGS HEADER -->
+                    <header>
+                        <div class="title">
+                            {{'SETTINGS.ACCOUNT_SETTING'| translate}}
+                        </div>
+                    </header>
+                    <!-- / SETTINGS HEADER -->
+
+                    <!-- SETTING USER NAME -->
+                    <div class="content-setting"
+                         fxLayout="row wrap">
+                        <div class="content-setting border-bottom">
+                            <div class="group-setting"
+                                 fxLayout="row"
+                                 fxLayoutAlign="space-between center">
+                                <div class="h2 header-name-bold">
+                                    {{'SETTINGS.USER_NAME'| translate}}
+                                </div>
+                                <div class="h3">
+                                    <a>
+                                        <button mat-button
+                                                [matTooltip]="'SETTINGS.FOR_EDIT_NAME'| translate">
+                                            {{'SETTINGS.OPEN'| translate}}
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="h3">
+                                <span *ngIf="userNameStat">
+                                    {{userLastName + ' ' + userFirstName}}
+                                </span>
+                                <span *ngIf="!userNameStat">
+                                    {{universityName}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / SETTING USER NAME -->
+
+                    <!-- SETTING EMAIL/USERNAME -->
+                    <div class="content-setting"
+                         fxLayout="row wrap">
+                        <div class="content-setting border-bottom">
+                            <div class="group-setting"
+                                 fxLayout="row"
+                                 fxLayoutAlign="space-between center">
+                                <div class="h2 header-name-bold">
+                                    {{'SETTINGS.ACCOUNT_NAME'| translate}}
+                                </div>
+                                <div class="h3">
+                                    <a>
+                                        <button mat-button
+                                                [matTooltip]="'SETTINGS.EMAIL_DESCRIPTION'| translate">
+                                            {{'SETTINGS.INFORMATION'| translate}}
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="h3">
+                                <span>
+                                    {{emailId}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / SETTING EMAIL/USERNAME -->
+
+                    <!-- SETTING PASSWORD -->
+                    <div class="content-setting"
+                         fxLayout="row wrap">
+                        <div class="content-setting border-bottom">
+                            <div class="group-setting"
+                                 fxLayout="row"
+                                 fxLayoutAlign="space-between center">
+                                <div class="h2 header-name-bold">
+                                    {{'SETTINGS.PASSWORD'| translate}}
+                                </div>
+                                <div class="h3"
+                                     *ngIf="!changePasswordStat">
+                                    <a>
+                                        <button mat-button
+                                                [matTooltip]="'SETTINGS.CHANGE_PASSWORD'| translate"
+                                                (click)="changePassword()">
+                                            {{'SETTINGS.CHANGE'| translate}}
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="h3"
+                                 *ngIf="!changePasswordStat">
+                                <span>
+                                    *********************
+                                </span>
+                            </div>
+                            <div *ngIf="changePasswordStat">
+                                <app-change-password (acceptNewPassword)="acceptChangePassword($event)">
+                                </app-change-password>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / SETTING PASSWORD -->
+
+                    <!-- SETTING LANGUAGE -->
+                    <div class="content-setting"
+                         fxLayout="row wrap">
+                        <div class="content-setting border-bottom">
+                            <div class="group-setting"
+                                 fxLayout="row"
+                                 fxLayoutAlign="space-between center">
+                                <div class="h2 header-name-bold">
+                                    {{'SETTINGS.LANGUAGE'| translate}}
+                                </div>
+                                <div class="h3"
+                                     *ngIf="!changeLanguageStat">
+                                    <a>
+                                        <button mat-button
+                                                [matTooltip]="'SETTINGS.CHANGE_LANGUAGE'| translate"
+                                                (click)="changeLanguage()">
+                                            {{'SETTINGS.CHANGE'| translate}}
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="h3"
+                                 *ngIf="!changeLanguageStat">
+                                <span>
+                                    {{myLanguage}}
+                                </span>
+                            </div>
+                            <div *ngIf="changeLanguageStat">
+                                <app-change-language (acceptChangingLanguage)="acceptChangeLanguage($event)">
+                                </app-change-language>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / SETTING LANGUAGE -->
+
+                    <!-- SETTING TERMS AND CONDITIONS -->
+                    <!--                    <div class="content-setting"-->
+                    <!--                         fxLayout="row wrap">-->
+                    <!--                        <div class="content-setting border-bottom">-->
+                    <!--                            <div class="group-setting"-->
+                    <!--                                 fxLayout="row"-->
+                    <!--                                 fxLayoutAlign="space-between center">-->
+                    <!--                                <div class="h2 header-name-bold">-->
+                    <!--                                    {{'SETTINGS.TERMS_AND_CONDITIONS'| translate}}-->
+                    <!--                                </div>-->
+                    <!--                                <div class="h3">-->
+                    <!--                                    <a>-->
+                    <!--                                        <button mat-button-->
+                    <!--                                                [matTooltip]="'SETTINGS.READ_TERMS_CONDITIONS'| translate"-->
+                    <!--                                                (click)="openTermsAndConditions()">-->
+                    <!--                                            {{'SETTINGS.OPEN'| translate}}-->
+                    <!--                                        </button>-->
+                    <!--                                    </a>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="h3">-->
+                    <!--                                <span>-->
+                    <!--                                    {{'SETTINGS.READ_TERMS_CONDITIONS'| translate}}-->
+                    <!--                                </span>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!-- / SETTING TERMS AND CONDITIONS -->
+
+                    <!-- SETTING DEACTIVATE ACCOUNT -->
+                    <!--                    <div class="content-setting"-->
+                    <!--                         fxLayout="row wrap">-->
+                    <!--                        <div class="content-setting border-bottom">-->
+                    <!--                            <div class="group-setting"-->
+                    <!--                                 fxLayout="row"-->
+                    <!--                                 fxLayoutAlign="space-between center">-->
+                    <!--                                <div class="h2 header-name-bold">-->
+                    <!--                                    {{'SETTINGS.DEACTIVATE_ACCOUNT'| translate}}-->
+                    <!--                                </div>-->
+                    <!--                                <div class="h3">-->
+                    <!--                                    <a>-->
+                    <!--                                        <button mat-button-->
+                    <!--                                                [matTooltip]="'SETTINGS.DEACTIVATE_DESCRIPTION'| translate"-->
+                    <!--                                                (click)="deactivateUserAccount()">-->
+                    <!--                                            {{'SETTINGS.DEACTIVATE'| translate}}-->
+                    <!--                                        </button>-->
+                    <!--                                    </a>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="h3">-->
+                    <!--                                <span>-->
+                    <!--                                    {{'SETTINGS.DEACTIVATE_ACCOUNT'| translate}}-->
+                    <!--                                </span>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!-- / SETTING DEACTIVATE ACCOUNT -->
+
+                    <!-- SETTING CONTACT US -->
+                    <!--                    <div class="content-setting"-->
+                    <!--                         fxLayout="row wrap">-->
+                    <!--                        <div class="content-setting border-bottom">-->
+                    <!--                            <div class="group-setting"-->
+                    <!--                                 fxLayout="row"-->
+                    <!--                                 fxLayoutAlign="space-between center">-->
+                    <!--                                <div class="h2 header-name-bold">-->
+                    <!--                                    {{'SETTINGS.CONTACT_US'| translate}}-->
+                    <!--                                </div>-->
+                    <!--                                <div class="h3">-->
+                    <!--                                    <a>-->
+                    <!--                                        <button mat-button-->
+                    <!--                                                [matTooltip]="'SETTINGS.CONTACT_US_DESCRIPTION'| translate">-->
+                    <!--                                            {{'SETTINGS.WRITE'| translate}}-->
+                    <!--                                        </button>-->
+                    <!--                                    </a>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="h3">-->
+                    <!--                                <span>-->
+                    <!--                                    {{'SETTINGS.CONTACT_US'| translate}}-->
+                    <!--                                </span>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!-- / SETTING CONTACT US -->
+
+                </div>
+                <!-- SETTINGS VIEW -->
+
+            </div>
+            <!-- / SETTINGS LIST -->
+
+            <!-- CONTENT ON THE LEFT -->
+            <div class="about-sidebar-setting"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="30">
+
+                <div class="profile-box-setting friends-setting"
+                     fxLayout="column">
+
+                    <header fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="title">
+                            {{'SETTINGS.SETTINGS'| translate}}
+                        </div>
+                    </header>
+
+                    <!--                    <div class="content border-bottom"-->
+                    <!--                         fxLayout="row wrap">-->
+                    <!--                        <div class="content">-->
+                    <!--                            <div class="info-line">-->
+                    <!--                                <button mat-button>-->
+                    <!--                                    Settings 1-->
+                    <!--                                    <span>-->
+                    <!--                                        &nbsp;-->
+                    <!--                                    </span>-->
+                    <!--                                    <mat-icon>-->
+                    <!--                                        notifications_active-->
+                    <!--                                    </mat-icon>-->
+                    <!--                                </button>-->
+                    <!--                            </div>-->
+                    <!--                            <br>-->
+
+                    <!--                            <div class="info-line">-->
+                    <!--                                <button mat-button>-->
+                    <!--                                    Settings 2-->
+                    <!--                                    <span>-->
+                    <!--                                        &nbsp;-->
+                    <!--                                    </span>-->
+                    <!--                                    <mat-icon>-->
+                    <!--                                        notifications_active-->
+                    <!--                                    </mat-icon>-->
+                    <!--                                </button>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+
+                    <div class="content-setting"
+                         fxLayout="row wrap">
+                        <div class="content-setting">
+                            <img src="assets/images/backgrounds/Advertisement.png">
+                            <!--                            Advertisement-->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- / CONTENT ON THE LEFT -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

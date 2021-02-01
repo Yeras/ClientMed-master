@@ -1,0 +1,44 @@
+<div fxLayout="row"
+     fxLayoutAlign="end center">
+
+    <button mat-button
+            class="like-button-disable"
+            *ngIf="publicationLikeDislike.likeHas === 0 || !publicationLikeDislike.likeHas"
+            (click)="clickLike()">
+            <span fxLayout="row"
+                  fxLayoutAlign="start center">
+                <mat-icon class="s-16">
+                    favorite_border
+                </mat-icon>
+                <span>
+                    {{'USER_INFORMATION_PUBLICATION_LIKE.LIKE'| translate}}
+                </span>
+                <span>&nbsp;</span>
+                <span>
+                    {{'(' + likeCount + ')'}}
+                </span>
+            </span>
+    </button>
+
+    <!-- CLICKED LIKE -->
+    <button mat-button
+            class="like-button-choose"
+            *ngIf="publicationLikeDislike.likeHas === 1"
+            (click)="clickLike()">
+            <span fxLayout="row"
+                  fxLayoutAlign="start center">
+                <mat-icon class="s-16">
+                    favorite
+                </mat-icon>
+                <span>
+                    {{'USER_INFORMATION_PUBLICATION_LIKE.LIKE'| translate}}
+                </span>
+                <span>&nbsp;</span>
+                <span>
+                    {{'(' + likeCount + ')'}}
+                </span>
+            </span>
+    </button>
+    <!-- / CLICKED LIKE -->
+
+</div>

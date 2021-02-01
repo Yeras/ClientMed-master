@@ -1,0 +1,13 @@
+<div class="infinity-scroll-home"
+     infiniteScroll
+     fusePerfectScrollbar
+     *ngIf="!publicationHasStat">
+
+    <div class="timeline-item">
+        <app-one-page-view
+            [userId]="userId"
+            [publicationId]="publicationId">
+        </app-one-page-view>
+    </div>
+
+</div>

@@ -1,0 +1,97 @@
+<div class="fuse-widget-front">
+
+    <div class="pb-16 wrapper"
+         *ngIf="imgType === 'profile'">
+        <div class="h2 secondary-text title">
+            {{'USER_INFORMATION_USER_VIEW.PROFILE_PHOTO'| translate}}
+        </div>
+        <div class="icon-cls">
+            <button mat-icon-button
+                    class="m-0 mr-16 secondary-text button-position"
+                    (click)="activeModal.close('Close click')">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="pb-16 wrapper"
+         *ngIf="imgType === 'background'">
+        <div class="h2 secondary-text title">
+            {{'USER_INFORMATION_USER_VIEW.BACKGROUND_PICTURE'| translate}}
+        </div>
+        <div class="icon-cls">
+            <button mat-icon-button
+                    class="m-0 mr-16 secondary-text button-position"
+                    (click)="activeModal.close('Close click')">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="pt-8 pb-32 border-top picture-content"
+         fxLayout="column">
+
+        <img class="profile-image picture-content"
+             *ngIf="currentFileUpload && imgType === 'profile'"
+             [src]="previewImg">
+        <img class="profile-image picture-content"
+             *ngIf="currentFileUpload && imgType === 'background'"
+             [src]="previewImg">
+
+        <img class="profile-image picture-content"
+             *ngIf="!currentFileUpload && imgType === 'profile'"
+             [src]="('/picture/file/' + userId) | secure | async">
+<!--             [src]="('http://localhost:8700/picture/file/' + userId) | secure | async">-->
+        <img class="profile-image picture-content"
+             *ngIf="!currentFileUpload && imgType === 'background'"
+             [src]="('/pictureBg/file/' + userId) | secure | async">
+<!--             [src]="('http://localhost:8700/pictureBg/file/' + userId) | secure | async">-->
+    </div>
+    <br>
+    <hr>
+
+    <div class="p-16"
+         fxLayout="row"
+         fxLayoutAlign="end">
+        <input
+            hidden
+            type="file"
+            #uploader
+            (change)="selectFile($event)"
+            accept="image/*"/>
+        <button mat-button
+                style="color: green;"
+                *ngIf="!currentFileUpload"
+                (click)="uploader.click()">
+            <mat-icon>
+                insert_photo
+            </mat-icon>
+            {{'USER_INFORMATION_USER_VIEW.UPLOAD_PICTURE'| translate}}
+        </button>
+
+        <div *ngIf="currentFileUpload">
+            <button mat-raised-button
+                    color="primary"
+                    (click)="currentFileUpload = null">
+                {{'USER_INFORMATION_USER_VIEW.CHOOSE'| translate}}
+            </button>
+            <span>&nbsp;</span>
+            <button mat-raised-button
+                    *ngIf="imgType === 'profile'"
+                    color="accent"
+                    (click)="saveDataFileProfile()">
+                {{'USER_INFORMATION_USER_VIEW.SAVE'| translate}}
+            </button>
+            <button mat-raised-button
+                    *ngIf="imgType === 'background'"
+                    color="accent"
+                    (click)="saveDataFileBackground()">
+                {{'USER_INFORMATION_USER_VIEW.SAVE'| translate}}
+            </button>
+        </div>
+    </div>
+</div>

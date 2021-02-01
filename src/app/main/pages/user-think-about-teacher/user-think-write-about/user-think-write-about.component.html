@@ -1,0 +1,50 @@
+<div class="pb-16 wrapper">
+    <div class="h2 secondary-text title">
+        {{'USER_THINK_ABOUT_TEACHER.WRITE_ABOUT_TEACHER'| translate}}
+    </div>
+    <div class="icon-cls">
+        <button mat-icon-button
+                class="m-0 mr-16 secondary-text button-position"
+                (click)="activeModal.close()">
+            <mat-icon>
+                close
+            </mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="main-content-body-write border-top textarea-content"
+     fusePerfectScrollbar
+     fxLayout="column">
+
+        <textarea matInput
+                  name="publication"
+                  [placeholder]="'USER_THINK_ABOUT_TEACHER.WRITE_ABOUT_TEACHER'| translate"
+                  [(ngModel)]="teacherAboutThinkObject.aboutThink">
+        </textarea>
+
+</div>
+
+<div fxLayout="row"
+     fxLayoutAlign="end"
+     class="main-content">
+    <button mat-raised-button
+            color="primary"
+            [matTooltip]="'USER_THINK_ABOUT_TEACHER.SAVE_INCOGNITO_DESCRIPTION'| translate"
+            [disabled]="(teacherAboutThinkObject.aboutThink | trim) === ''"
+            (click)="saveDataIncognito()">
+        {{'USER_THINK_ABOUT_TEACHER.SAVE_INCOGNITO'| translate}}
+    </button>
+
+    <span>
+        &nbsp;
+    </span>
+
+    <button mat-raised-button
+            color="accent"
+            [matTooltip]="'USER_THINK_ABOUT_TEACHER.SAVE_DESCRIPTION'| translate"
+            [disabled]="(teacherAboutThinkObject.aboutThink | trim) === ''"
+            (click)="saveDataNoIncognito()">
+        {{'USER_THINK_ABOUT_TEACHER.SAVE'| translate}}
+    </button>
+</div>

@@ -1,0 +1,25 @@
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class GradeSystemService {
+
+    constructor(private http: HttpClient) {
+    }
+
+    /***
+     * Token header
+     * */
+    private httpOptions(): HttpHeaders {
+        return new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    }
+
+
+    getAllGrade(): Observable<any> {
+        return this.http.get('/university-control/grade/all', {headers: this.httpOptions()});
+    }
+
+}

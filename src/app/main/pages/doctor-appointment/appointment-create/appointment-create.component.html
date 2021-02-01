@@ -1,0 +1,397 @@
+<div id="profile"
+     class="page-layout simple tabbed">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="100">
+
+                <div class="profile-box friends"
+                     fxLayout="column">
+
+                    <header class="primary"
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <div class="title">
+                            {{'ADM_TEACHER.CREATE_TEACHER_ACCOUNT'| translate}}
+                        </div>
+                    </header>
+
+                    <div class="content">
+
+                        <div class="group">
+                            <br>
+                            <div>
+
+                                <form name="registerForm"
+                                      [formGroup]="appointmentForm"
+                                      novalidate>
+                                    <div>
+                                        <!-- FIRST NAME -->
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="33">
+                                            <mat-label>
+                                                {{'ADM_TEACHER.FIRST_NAME'| translate}}
+                                            </mat-label>
+                                            <input matInput
+                                                   type="text"
+                                                   formControlName="firstName"
+                                                   [(ngModel)]="patientAppointmentObject.firstName">
+                                            <mat-icon matSuffix
+                                                      class="secondary-text">
+                                                public
+                                            </mat-icon>
+                                            <mat-error>
+                                                {{'ADM_TEACHER.NAME_IS_REQUIRED'| translate}}
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <!-- / FIRST NAME -->
+
+                                        <span>&nbsp;</span>
+
+                                        <!-- LAST NAME -->
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="33">
+                                            <mat-label>
+                                                {{'ADM_TEACHER.LAST_NAME'| translate}}
+                                            </mat-label>
+                                            <input matInput
+                                                   type="text"
+                                                   formControlName="lastName"
+                                                   [(ngModel)]="patientAppointmentObject.lastName">
+                                            <mat-icon matSuffix
+                                                      class="secondary-text">
+                                                location_city
+                                            </mat-icon>
+                                            <mat-error>
+                                                {{'ADM_TEACHER.LAST_NAME_IS_REQUIRED'| translate}}
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <!-- / LAST NAME -->
+
+                                        <span>&nbsp;</span>
+
+                                        <!-- FATHERS NAME -->
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="33">
+                                            <mat-label>
+                                                {{'ADM_TEACHER.FATHERS_NAME'| translate}}
+                                            </mat-label>
+                                            <input matInput
+                                                   type="text"
+                                                   formControlName="fathersName"
+                                                   [(ngModel)]="patientAppointmentObject.fathersName">
+                                            <mat-icon matSuffix
+                                                      class="secondary-text">
+                                                location_city
+                                            </mat-icon>
+                                        </mat-form-field>
+                                        <!-- / FATHERS NAME -->
+                                    </div>
+
+                                    <!-- PATIENT BIRTHDAY -->
+                                    <div>
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="40">
+                                            <mat-label>
+                                                Patient Birthday
+                                            </mat-label>
+                                            <input matInput
+                                                   [matDatepicker]="picker"
+                                                   formControlName="patientBirthday"
+                                                   [(ngModel)]="patientAppointmentObject.patientBirthday"
+                                                   [value]="patientAppointmentObject.patientBirthday">
+                                            <mat-datepicker-toggle matSuffix
+                                                                   [for]="picker">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #picker>
+                                            </mat-datepicker>
+                                            {{patientAppointmentObject.patientBirthday | date: 'dd MMMM yyyy'}}
+                                            <mat-error>
+                                                {{'ADM_TEACHER.ENTER_DATE_IS_REQUIRED'| translate}}
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- PATIENT BIRTHDAY -->
+
+                                    <!-- PATIENT PHONE NUMBER -->
+                                    <div>
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="50">
+                                            <mat-label>
+                                                Patient Phone Number
+                                            </mat-label>
+                                            <input matInput
+                                                   type="number"
+                                                   formControlName="patientPhone"
+                                                   [(ngModel)]="patientAppointmentObject.patientPhone">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                Patient Phone Number
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- / PATIENT PHONE NUMBER -->
+
+                                    <!-- EMAIL -->
+                                    <div>
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="50">
+                                            <mat-label>
+                                                Patient Email
+                                            </mat-label>
+                                            <input matInput
+                                                   formControlName="patientEmail1"
+                                                   [(ngModel)]="patientAppointmentObject.patientEmail">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                Patient Email
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <span>&nbsp;</span>
+
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="50">
+                                            <mat-label>
+                                                Another Email
+                                            </mat-label>
+                                            <input matInput
+                                                   formControlName="patientEmail2"
+                                                   [(ngModel)]="patientAppointmentObject.anotherEmail">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                Another Email
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- / EMAIL -->
+
+                                    <!-- APPOINTMENT LIST -->
+                                    <div>
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="100">
+                                            <mat-label>
+                                                Appointment List
+                                            </mat-label>
+                                            <textarea matInput
+                                                      formControlName="appointmentList"
+                                                      name="appointment"
+                                                      value="patient"
+                                                      [(ngModel)]="patientAppointmentObject.appointmentList">
+                                            </textarea>
+                                            <mat-error>
+                                                Appointment List
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- / APPOINTMENT LIST -->
+
+                                    <!-- START MESSAGE DATE -->
+                                    <div>
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="40">
+                                            <mat-label>
+                                                Start Send Message Date
+                                            </mat-label>
+                                            <input matInput
+                                                   [matDatepicker]="pickerStart"
+                                                   formControlName="startSendMessageDate"
+                                                   [(ngModel)]="patientAppointmentObject.startSendMessage"
+                                                   [value]="patientAppointmentObject.startSendMessage">
+                                            <mat-datepicker-toggle matSuffix
+                                                                   [for]="pickerStart">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #pickerStart>
+                                            </mat-datepicker>
+                                            {{patientAppointmentObject.startSendMessage | date: 'dd MMMM yyyy'}}
+                                            <mat-error>
+                                                Start Send Message Date
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <span>&nbsp;</span>
+
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="30">
+                                            <mat-label>
+                                                How many times in day send message
+                                            </mat-label>
+                                            <input matInput
+                                                   type="number"
+                                                   formControlName="howManyTimesInDay"
+                                                   [(ngModel)]="patientAppointmentObject.howManyTimesDay">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                How many times in day send message
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <span>&nbsp;</span>
+
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="40">
+                                            <mat-label>
+                                                How many days
+                                            </mat-label>
+                                            <input matInput
+                                                   type="number"
+                                                   formControlName="howLongDrinkMedicine"
+                                                   [(ngModel)]="patientAppointmentObject.howManyDays">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                How many days
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- / START MESSAGE DATE -->
+
+                                    <!-- DOCTOR INFORMATION -->
+                                    <div>
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="30">
+                                            <mat-label>
+                                                Doctor Phone Number
+                                            </mat-label>
+                                            <input matInput
+                                                   type="number"
+                                                   formControlName="doctorPhoneNumber"
+                                                   [(ngModel)]="patientAppointmentObject.doctorPhoneNumber">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                Doctor Phone Number
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <span>&nbsp;</span>
+
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="30">
+                                            <mat-label>
+                                                Doctor Work Number
+                                            </mat-label>
+                                            <input matInput
+                                                   type="number"
+                                                   formControlName="doctorWorkNumber"
+                                                   [(ngModel)]="patientAppointmentObject.doctorWorkNumber">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                Doctor Work Number
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <span>&nbsp;</span>
+
+                                        <mat-form-field class="form-width"
+                                                        appearance="outline"
+                                                        fxFlex="100"
+                                                        fxFlex.gt-sm="30"
+                                                        fxFlex.gt-md="40">
+                                            <mat-label>
+                                                Doctor's email
+                                            </mat-label>
+                                            <input matInput
+                                                   type="text"
+                                                   formControlName="doctorEmail"
+                                                   [(ngModel)]="patientAppointmentObject.doctorEmail">
+                                            <mat-icon matSuffix class="secondary-text">
+                                                account_circle
+                                            </mat-icon>
+                                            <mat-error>
+                                                Doctor's email
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- DOCTOR INFORMATION -->
+
+                                    <div fxLayout="row"
+                                         fxLayoutAlign="end end">
+                                        <button mat-raised-button
+                                                color="accent"
+                                                aria-label="CREATE UNIVERSITY ACCOUNT"
+                                                (click)="saveAppointment()"
+                                                [disabled]="appointmentForm.invalid">
+                                            {{'ADM_TEACHER.CREATE_ACCOUNT'| translate}}
+                                        </button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / FOLLOWING -->
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

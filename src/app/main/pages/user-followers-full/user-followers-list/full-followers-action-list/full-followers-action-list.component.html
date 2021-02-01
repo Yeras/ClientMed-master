@@ -1,0 +1,39 @@
+<!-- FOR OTHER USERS -->
+<div *ngIf="!myProfileStat">
+
+    <button mat-raised-button
+            *ngIf="!followingRequestStat && !followingStat && !universityUser"
+            (click)="following()">
+        {{'USER_FOLLOWERS_FULL.FOLLOW'| translate}}
+    </button>
+    <button mat-raised-button
+            *ngIf="universityUser && !followingStat"
+            (click)="followToUniversity()">
+        {{'USER_FOLLOWERS_FULL.FOLLOW'| translate}}
+    </button>
+
+    <button mat-raised-button
+            *ngIf="followingRequestStat"
+            (click)="removeRequestFollow()">
+        {{'USER_FOLLOWERS_FULL.REMOVE_REQUEST'| translate}}
+    </button>
+
+    <!--    <button mat-raised-button-->
+    <!--            *ngIf="followingStat && !universityUser"-->
+    <!--            (click)="sendMessage()">-->
+    <!--        Send Message-->
+    <!--    </button>-->
+    <span>
+        &nbsp;
+    </span>
+    <button mat-icon-button
+            [matTooltip]="'USER_FOLLOWERS_FULL.UNFOLLOW'| translate"
+            *ngIf="followingStat"
+            (click)="unFollowToUser()">
+        <mat-icon>
+            delete
+        </mat-icon>
+    </button>
+
+</div>
+<!-- / FOR OTHER USERS -->

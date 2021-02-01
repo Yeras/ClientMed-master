@@ -1,0 +1,140 @@
+<div id="profile"
+     class="page-layout simple tabbed">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- NOTIFICATION LIST -->
+            <div class="about-content infinity-scroll-chat-list"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="25"
+                 infiniteScroll
+                 fusePerfectScrollbar
+                 [infiniteScrollDistance]="0.5"
+                 (scrolled)="findMoreDataScrolling()"
+                 [scrollWindow]="false">
+
+                <!-- REQUEST NOTIFICATION LIST -->
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+
+                    <!-- REQUEST NOTIFICATION HEADER -->
+                    <header>
+                        <div class="title">
+                        </div>
+                    </header>
+                    <!-- / REQUEST NOTIFICATION HEADER -->
+
+                    <!-- REQUEST NOTIFICATION VIEW -->
+                    <div class="content"
+                         fxLayout="row wrap">
+                        <div class="content">
+                            <div>
+                                <div class="group"
+                                     fxLayout="row"
+                                     fxLayoutAlign="space-between center"
+                                     *ngFor="let chatInformation of webUserChatInformationList">
+
+                                    <div class="view-message-width border-bottom"
+                                         fxLayout="row"
+                                         fxLayoutAlign="start center"
+                                         (click)="openChat(chatInformation.chatId)">
+
+                                        <div class="logo">
+                                            <a [routerLink]="'/user-information/' + chatInformation.talkWithUserId">
+                                                <img class="avatar"
+                                                     [src]="('/picture/file/' + chatInformation.talkWithUserId) | secure | async">
+<!--                                                     [src]="('http://localhost:8700/picture/file/' + chatInformation.talkWithUserId) | secure | async">-->
+                                            </a>
+                                        </div>
+
+                                        <div>
+                                            <div class="name">
+                                                <a [routerLink]="'/user-information/' + chatInformation.talkWithUserId">
+                                                    {{chatInformation.toUserLName + ' ' + chatInformation.toUserFName}}
+                                                </a>
+                                            </div>
+                                            <div class="category">
+                                                {{chatInformation.messageDate | date: 'dd.MM.yyyy - hh:mm'}}
+                                            </div>
+                                            <div class="members">
+                                                <span *ngIf="chatInformation.lastMessageUserId === localUser">
+                                                      {{'You: ' + chatInformation.message | slice:0:15}}
+                                                </span>
+                                                <span class="message-to-me"
+                                                      *ngIf="chatInformation.lastMessageUserId !== localUser">
+                                                      {{chatInformation.message | slice:0:15}}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div fxLayoutAlign="center center"
+                                     *ngIf="chatList === 0">
+                                    {{'USER_CHATTING.START_CHAT_VIEW'| translate}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- / REQUEST NOTIFICATION VIEW -->
+
+                </div>
+                <!-- / REQUEST NOTIFICATION LIST -->
+
+            </div>
+            <!-- / NOTIFICATION LIST -->
+
+            <div class="about-sidebar"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="75">
+
+                <!-- REQUEST NOTIFICATION LIST -->
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+
+                    <!-- REQUEST NOTIFICATION VIEW -->
+                    <div class="content"
+                         fxLayout="row wrap">
+                        <div class="content">
+
+                            <!-- CHATTING DETAIL -->
+                            <div *ngIf="openChatStat">
+                                <app-view-chatting [chatId]="chatId"
+                                                   (arrowBack)="openChatListAgain()"
+                                                   (deleteChatNotification)="sendMessageUsingSocketToToolbar($event)">
+                                </app-view-chatting>
+                            </div>
+
+                            <div fxLayoutAlign="center center"
+                                 *ngIf="!openChatStat">
+                                {{'USER_CHATTING.CHOOSE_PROFILE_VIEW'| translate}}
+                            </div>
+                            <!-- / CHATTING DETAIL -->
+
+                        </div>
+                    </div>
+                    <!-- / REQUEST NOTIFICATION VIEW -->
+
+                </div>
+                <!-- / REQUEST NOTIFICATION LIST -->
+
+            </div>
+            <!-- / NOTIFICATION LIST -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+<!-- / CHAT LIST -->

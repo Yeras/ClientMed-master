@@ -1,0 +1,14 @@
+<div *ngIf="userInformationStat">
+    <app-user-view-information [userId]=userId>
+    </app-user-view-information>
+</div>
+
+<div *ngIf="teacherInformationStat">
+    <app-teacher-view-information [userId]=userId>
+    </app-teacher-view-information>
+</div>
+
+<div *ngIf="universityInformationStat">
+    <app-university-view-information [userId]=userId>
+    </app-university-view-information>
+</div>

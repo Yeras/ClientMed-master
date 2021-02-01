@@ -1,0 +1,723 @@
+<div id="profile-teacher"
+     class="page-layout simple tabbed">
+
+    <!-- HEADER -->
+    <!--    <div class="header-teacher p-24"-->
+    <!--         fxLayout="column"-->
+    <!--         fxLayoutAlign="center center"-->
+    <!--         fxLayout.gt-sm="row"-->
+    <!--         fxLayoutAlign.gt-sm="space-between end"-->
+    <!--         *ngIf="profileBgPicture"-->
+    <!--         [ngStyle]="{'background-image': 'url('+ (profileBgPicture | secure | async) +')'}">-->
+    <div class="header-teacher p-24"
+         fxLayout="column"
+         fxLayoutAlign="center center"
+         fxLayout.gt-sm="row"
+         fxLayoutAlign.gt-sm="space-between end"
+         *ngIf="profileBgPicture"
+         id="image">
+
+        <div class="user-info"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayout.gt-sm="row"
+             fxLayoutAlign.gt-sm="start center">
+            <img class="profile-image avatar huge"
+                 [src]="profilePhoto | secure | async"
+                 *ngIf="profilePhoto"
+                 (click)="myProfileStat === true && changeImg('profile')"
+                 [matTooltip]="'USER_INFORMATION_TEACHER_VIEW.CHANGE_PHOTO'| translate"
+                 [matTooltipDisabled]="!myProfileStat"
+                 [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+        </div>
+
+        <div class="actions"
+             fxLayout="row"
+             fxLayoutAlign="end center"
+             [@animate]="{value:'*',params:{delay:'200ms'}}">
+
+            <button mat-raised-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="More">
+                <mat-icon>
+                    menu
+                </mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <div *ngIf="!myProfileStat"
+                     class="actions"
+                     [@animate]="{value:'*',params:{delay:'200ms'}}">
+                    <button mat-menu-item
+                            aria-label="Grade"
+                            (click)="putGrade()"
+                            [disabled]="!followingStat">
+                        <mat-icon>
+                            gavel
+                        </mat-icon>
+                        <span>
+                            {{'USER_INFORMATION_TEACHER_VIEW.GRADE'| translate}}
+                        </span>
+                    </button>
+                </div>
+                <div *ngIf="!myProfileStat"
+                     class="actions"
+                     [@animate]="{value:'*',params:{delay:'200ms'}}">
+                    <button mat-menu-item
+                            aria-label="Follow"
+                            *ngIf="!followingRequestStat && !followingStat"
+                            (click)="following()">
+                        <mat-icon>
+                            star
+                        </mat-icon>
+                        <span>
+                            {{'USER_INFORMATION_TEACHER_VIEW.FOLLOW'| translate}}
+                        </span>
+                    </button>
+                </div>
+                <div *ngIf="!myProfileStat"
+                     class="actions"
+                     [@animate]="{value:'*',params:{delay:'200ms'}}">
+                    <button mat-menu-item
+                            aria-label="Remove Request"
+                            *ngIf="followingRequestStat"
+                            (click)="removeRequestFollow()">
+                        <mat-icon>
+                            recent_actors
+                        </mat-icon>
+                        <span>
+                            {{'USER_INFORMATION_TEACHER_VIEW.REMOVE_REQUEST'| translate}}
+                        </span>
+                    </button>
+                </div>
+                <div *ngIf="!myProfileStat"
+                     class="actions"
+                     [@animate]="{value:'*',params:{delay:'200ms'}}">
+                    <button mat-menu-item
+                            aria-label="Unfollow"
+                            *ngIf="followingStat"
+                            (click)="unFollowToUser()">
+                        <mat-icon>
+                            how_to_reg
+                        </mat-icon>
+                        <span>
+                            {{'USER_INFORMATION_TEACHER_VIEW.UNFOLLOW'| translate}}
+                        </span>
+                    </button>
+                </div>
+                <div *ngIf="!myProfileStat"
+                     class="actions"
+                     [@animate]="{value:'*',params:{delay:'200ms'}}">
+                    <button mat-menu-item
+                            aria-label="Send Message"
+                            [disabled]="!followingStat"
+                            (click)="sendMessage()">
+                        <mat-icon>
+                            message
+                        </mat-icon>
+                        <span>
+                            {{'USER_INFORMATION_TEACHER_VIEW.SEND_MESSAGE'| translate}}
+                        </span>
+                    </button>
+                </div>
+
+                <div *ngIf="myProfileStat"
+                     class="actions"
+                     [@animate]="{value:'*',params:{delay:'200ms'}}">
+                    <button mat-menu-item
+                            aria-label="Change background picture"
+                            (click)="changeImg('background')">
+                        <mat-icon>
+                            camera_alt
+                        </mat-icon>
+                        <span>
+                            {{'USER_INFORMATION_TEACHER_VIEW.CHANGE_BACKGROUND'| translate}}
+                        </span>
+                    </button>
+                </div>
+            </mat-menu>
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <br>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div id="about"
+             class="p-24"
+             fxLayout="row wrap">
+
+            <!-- TEACHER INFORMATION -->
+            <div class="about-content"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="30"
+                 fxFlex.gt-md="30">
+
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header class="h1 name border-bottom"
+                            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <div class="h2 info-line"
+                             fxLayout="row"
+                             [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                            <span class="teacher-info-name">
+                                {{teacherInfo.lastName + ' ' + teacherInfo.firstName}}
+                                <span *ngIf="teacherInfo.fathersName">
+                                    {{teacherInfo.fathersName}}
+                                </span>
+                            </span>
+                            <mat-icon [matTooltip]="'USER_INFORMATION_TEACHER_VIEW.OFFICIAL_TEACHERS_PAGE'| translate"
+                                      class="teacher-page-icon">
+                                check_circle
+                            </mat-icon>
+                            <mat-icon class="teacher-edit-icon"
+                                      [matTooltip]="'USER_INFORMATION_TEACHER_VIEW.EDIT'| translate"
+                                      *ngIf="myProfileStat === true && editProfile === true"
+                                      (click)="editProfile = !editProfile">
+                                edit
+                            </mat-icon>
+                        </div>
+                    </header>
+
+                    <!-- EDIT PROFILE INFORMATION FORM -->
+                    <form fxLayout="column"
+                          fxLayoutAlign="start"
+                          fxFlex="1 0 auto"
+                          name="form"
+                          [formGroup]="form"
+                          *ngIf="editProfile !== true">
+                        <br>
+
+                        <!-- TEACHER'S FULL NAME -->
+                        <div fxLayout="row"
+                             fxLayoutAlign="start center"
+                             fxFlex="1 0 auto">
+                            <!-- FIRST NAME -->
+                            <span>&nbsp;</span>
+                            <mat-form-field appearance="outline"
+                                            fxFlex="45"
+                                            class="pr-4">
+                                <mat-label>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.FIRST_NAME'| translate}}
+                                </mat-label>
+                                <input matInput
+                                       [readonly]="editProfile"
+                                       formControlName="firstName"
+                                       required
+                                       [(ngModel)]="teacherInfo.firstName"
+                                       [value]="teacherInfo.firstName">
+                                <mat-icon matSuffix
+                                          class="secondary-text">
+                                    account_circle
+                                </mat-icon>
+                                <mat-error>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.NAME_IS_REQUIRED'| translate}}
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- / FIRST NAME -->
+
+                            <!-- LAST NAME -->
+                            <mat-form-field appearance="outline"
+                                            fxFlex="45"
+                                            class="pl-4">
+                                <mat-label>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.LAST_NAME'| translate}}
+                                </mat-label>
+                                <input matInput
+                                       [readonly]="editProfile"
+                                       formControlName="lastName"
+                                       required
+                                       [(ngModel)]="teacherInfo.lastName"
+                                       [value]="teacherInfo.lastName">
+                                <mat-icon matSuffix
+                                          class="secondary-text">
+                                    account_circle
+                                </mat-icon>
+                                <mat-error>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.LAST_NAME_IS_REQUIRED'| translate}}
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- / LAST NAME -->
+                        </div>
+
+                        <div>
+                            <!-- FATHER'S NAME -->
+                            <mat-form-field appearance="outline"
+                                            fxFlex="45"
+                                            class="pl-4">
+                                <mat-label>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.FATHERS_NAME'| translate}}
+                                </mat-label>
+                                <input matInput
+                                       [readonly]="editProfile"
+                                       formControlName="fathersName"
+                                       [(ngModel)]="teacherInfo.fathersName"
+                                       [value]="teacherInfo.fathersName">
+                                <mat-icon matSuffix
+                                          class="secondary-text">
+                                    account_circle
+                                </mat-icon>
+                            </mat-form-field>
+                            <!-- / FATHER'S NAME -->
+                        </div>
+                        <!-- / TEACHER'S FULL NAME -->
+
+                        <!-- BIRTHDAY -->
+                        <div fxLayout="row"
+                             fxLayoutAlign="start center"
+                             fxFlex="1 0 auto">
+                            <span>&nbsp;</span>
+                            <mat-form-field appearance="outline"
+                                            fxFlex="45">
+                                <mat-label>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.BIRTHDAY'| translate}}
+                                </mat-label>
+                                <input matInput
+                                       [matDatepicker]="picker"
+                                       formControlName="birthday"
+                                       [(ngModel)]="teacherInfo.userBirthday"
+                                       [value]="teacherInfo.userBirthday">
+                                <mat-datepicker-toggle matSuffix
+                                                       [for]="picker">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker>
+                                </mat-datepicker>
+                                {{teacherInfo.userBirthday | date: 'dd MMMM yyyy'}}
+                            </mat-form-field>
+                        </div>
+                        <!-- / BIRTHDAY -->
+
+                        <!-- COUNTRY AND CITY SELECTOR -->
+                        <div fxLayout="row"
+                             fxLayoutAlign="start center"
+                             fxFlex="1 0 auto">
+                            <span>&nbsp;</span>
+                            <!-- COUNTRY SELECTOR -->
+                            <mat-form-field appearance="outline"
+                                            fxFlex="45">
+                                <mat-label>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.COUNTRY'| translate}}
+                                </mat-label>
+                                <mat-select formControlName="country"
+                                            [(ngModel)]="teacherInfo.countryId"
+                                            [value]="teacherInfo.countryId"
+                                            (selectionChange)="getCityByCountry($event.value)">
+                                    <div *ngFor="let country of countryList">
+                                        <mat-option [value]="country.id">
+                                            {{country.name}}
+                                        </mat-option>
+                                    </div>
+                                </mat-select>
+                                <mat-icon matSuffix
+                                          class="secondary-text">
+                                    edit_location
+                                </mat-icon>
+                            </mat-form-field>
+                            <!-- / COUNTRY SELECTOR -->
+
+                            <!-- CITY SELECTOR -->
+                            <mat-form-field appearance="outline"
+                                            fxFlex="45"
+                                            class="px-8">
+                                <mat-label>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.CITY'| translate}}
+                                </mat-label>
+                                <mat-select formControlName="city"
+                                            [(ngModel)]="teacherInfo.cityId"
+                                            [value]="teacherInfo.cityId">
+                                    <div *ngFor="let city of cityList">
+                                        <mat-option [value]="city.id">
+                                            {{city.name}}
+                                        </mat-option>
+                                    </div>
+                                </mat-select>
+                                <mat-icon matSuffix
+                                          class="secondary-text">
+                                    location_city
+                                </mat-icon>
+                            </mat-form-field>
+                            <!-- / CITY SELECTOR -->
+                        </div>
+                        <!-- / COUNTRY AND CITY SELECTOR -->
+
+                        <!-- ABOUT ME -->
+                        <div fxLayout="row"
+                             fxLayoutAlign="start center"
+                             fxFlex="1 0 auto">
+                            <span>&nbsp;</span>
+                            <mat-form-field appearance="outline"
+                                            fxFlex="95">
+                                <mat-label>
+                                    {{'USER_INFORMATION_TEACHER_VIEW.ABOUT_ME'| translate}}
+                                </mat-label>
+                                <textarea matInput
+                                          formControlName="aboutMe"
+                                          [(ngModel)]="teacherInfo.aboutMe"
+                                          [value]="teacherInfo.aboutMe">
+                            </textarea>
+                            </mat-form-field>
+                        </div>
+                        <!-- / ABOUT ME -->
+
+                        <div *ngIf="editProfile !== true"
+                             class="actions"
+                             fxLayout="row"
+                             fxLayoutAlign="end center"
+                             [@animate]="{value:'*',params:{delay:'200ms'}}">
+                            <button mat-button
+                                    aria-label="Send Message"
+                                    (click)="cancel()">
+                                {{'USER_INFORMATION_TEACHER_VIEW.CANCEL'| translate}}
+                            </button>
+                            <span>&nbsp;</span>
+                            <button mat-raised-button
+                                    color="accent"
+                                    aria-label="Save"
+                                    (click)="save()">
+                                {{'USER_INFORMATION_TEACHER_VIEW.SAVE'| translate}}
+                            </button>
+
+                        </div>
+
+                    </form>
+                    <!-- / EDIT PROFILE INFORMATION FORM -->
+
+                    <!-- TEACHER INFORMATION VIEW -->
+                    <div class="content"
+                         *ngIf="editProfile === true">
+                        <div class="info-line"
+                             *ngIf="teacherInfo.userBirthday !== null">
+                            <div class="title">
+                                <mat-icon>
+                                    date_range
+                                </mat-icon>
+                                {{'USER_INFORMATION_TEACHER_VIEW.BIRTHDAY'| translate}}
+                            </div>
+                            <span>
+                                {{teacherInfo.userBirthday | date: 'dd MMMM yyyy'}}
+                            </span>
+                        </div>
+
+                        <div class="info-line"
+                             *ngIf="countryName !== null || cityName !== null">
+                            <div class="title">
+                                <mat-icon>
+                                    location_on
+                                </mat-icon>
+                                {{'USER_INFORMATION_TEACHER_VIEW.FROM'| translate}}
+                            </div>
+                            <span *ngIf="countryName !== null">
+                                {{countryName}}
+                            </span>
+                            <span *ngIf="countryName !== null && cityName !== null">
+                                {{'- '}}
+                            </span>
+                            <span *ngIf="cityName !== null">
+                                {{cityName}}
+                            </span>
+                        </div>
+
+                        <div class="info-line"
+                             *ngIf="teacherInfo.aboutMe !== null">
+                            <div class="title">
+                                <mat-icon>
+                                    info
+                                </mat-icon>
+                                {{'USER_INFORMATION_TEACHER_VIEW.ABOUT_ME'| translate}}
+                            </div>
+                            <p class="about-information-area">
+                                {{teacherInfo.aboutMe}}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- / TEACHER INFORMATION VIEW -->
+
+                </div>
+                <!-- / TEACHER INFORMATION -->
+
+                <!-- TEACHER'S ACHIEVEMENTS -->
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+
+                    <!-- HEADER TEACHER'S ACHIEVEMENTS INFORMATION -->
+                    <header class="h1 name border-bottom"
+                            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <div class="h2 info-line university-name">
+                            {{'USER_INFORMATION_TEACHER_VIEW.ACHIEVEMENTS'| translate}}
+                            <button class="button-position"
+                                    mat-icon-button
+                                    aria-label="Send Message"
+                                    *ngIf="myProfileStat === true"
+                                    (click)="changeAchievement()">
+                                <mat-icon>
+                                    create
+                                </mat-icon>
+                            </button>
+                        </div>
+                    </header>
+                    <!-- / HEADER TEACHER'S ACHIEVEMENTS INFORMATION -->
+
+                    <!-- TEACHER'S ACHIEVEMENTS VIEW -->
+                    <div class="content"
+                         fxLayout="row wrap">
+                        <div class="friend"
+                             fxFlex="33"
+                             *ngFor="let achievement of teacherAchievement">
+                            <img
+                                [src]="('/teacher-control/achievement/picture/' + achievement.achievementId) | secure | async">
+<!--                                [src]="('http://78.140.223.4:8705/achievement/picture/' + achievement.achievementId) | secure | async">-->
+<!--                                [src]="('http://localhost:8705/achievement/picture/' + achievement.achievementId) | secure | async">-->
+                        </div>
+                    </div>
+
+                    <div class="content about-information-area"
+                         *ngIf="achievementLength == 0">
+                        <blockquote>
+                            <p>
+                                {{'USER_INFORMATION_TEACHER_VIEW.NO_SHOWS_ACHIEVEMENT'| translate}}
+                            </p>
+                            <footer>
+                                {{'USER_INFORMATION_TEACHER_VIEW.WUK'| translate}}
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div fxLayoutAlign="end end">
+                        <button mat-raised-button
+                                *ngIf="achievementLength !== 0"
+                                (click)="seeAchievement()">
+                            {{'USER_INFORMATION_TEACHER_VIEW.SEE_DETAIL'| translate}}
+                        </button>
+                    </div>
+                    <!-- / TEACHER'S ACHIEVEMENTS VIEW -->
+
+                </div>
+                <!-- / TEACHER'S ACHIEVEMENTS -->
+
+                <!-- THINK ANOTHER USER ABOUT TEACHER -->
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+
+                    <!-- HEADER THINK ANOTHER USER ABOUT TEACHER -->
+                    <header class="h1 name border-bottom"
+                            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <div class="h2 info-line university-name">
+                            {{'USER_INFORMATION_TEACHER_VIEW.ABOUT_TEACHER'| translate}}
+                        </div>
+                    </header>
+                    <!-- / HEADER THINK ANOTHER USER ABOUT TEACHER -->
+
+                    <!-- THINK ANOTHER USER ABOUT TEACHER VIEW -->
+                    <div class="content about-information-area"
+                         *ngIf="teacherAboutThinkToFrontLength !== 0">
+                        <blockquote>
+                            <p>
+                                {{teacherAboutThinkToFront.aboutThink}}
+                            </p>
+                            <footer>
+                                {{teacherAboutThinkToFront.lastName + ' ' + teacherAboutThinkToFront.firstName}}
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div class="content about-information-area"
+                         *ngIf="teacherAboutThinkToFrontLength == 0">
+                        <blockquote>
+                            <p>
+                                {{'USER_INFORMATION_TEACHER_VIEW.BE_THE_FIRST_WRITE'| translate}}
+                            </p>
+                            <footer>
+                                {{'USER_INFORMATION_TEACHER_VIEW.WUK'| translate}}
+                            </footer>
+                        </blockquote>
+                    </div>
+
+                    <div fxLayoutAlign="end end">
+                        <a [routerLink]="'/think-about/' + userId">
+                            <button mat-raised-button>
+                                {{'USER_INFORMATION_TEACHER_VIEW.SEE_ALL'| translate}}
+                            </button>
+                        </a>
+                    </div>
+                    <!-- / THINK ANOTHER USER ABOUT TEACHER VIEW -->
+
+                </div>
+                <!-- / THINK ANOTHER USER ABOUT TEACHER -->
+
+                <!-- UNIVERSITY WORK HISTORY -->
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+
+                    <!-- HEADER UNIVERSITY WORK HISTORY INFORMATION -->
+                    <header class="h1 name border-bottom"
+                            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <div class="h2 info-line university-name">
+                            {{'USER_INFORMATION_TEACHER_VIEW.UNIVERSITY_WORK_HISTORY'| translate}}
+                        </div>
+                    </header>
+                    <!-- / HEADER UNIVERSITY WORK HISTORY INFORMATION -->
+
+                    <!-- TEACHER UNIVERSITY WORK HISTORY VIEW -->
+                    <div class="content">
+                        <div class="info-line">
+                            <app-teacher-work-history
+                                [teacherId]="userId">
+                            </app-teacher-work-history>
+                        </div>
+                    </div>
+                    <!-- / TEACHER UNIVERSITY WORK HISTORY VIEW -->
+
+                </div>
+                <!-- / UNIVERSITY WORK HISTORY -->
+
+                <!-- TEACHER EDUCATION HISTORY INFORMATION CONTENT -->
+                <div class="profile-box info-box work"
+                     fxLayout="column">
+
+                    <!-- HEADER UNIVERSITY WORK HISTORY INFORMATION -->
+                    <header class="h1 name border-bottom"
+                            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <div class="h2 info-line university-name">
+                            {{'USER_INFORMATION_TEACHER_VIEW.EDUCATION'| translate}}
+                            <button class="button-position"
+                                    mat-icon-button
+                                    aria-label="Send Message"
+                                    *ngIf="myProfileStat === true && editEducation === true"
+                                    (click)="this.editEducation = !this.editEducation">
+                                <mat-icon>
+                                    create
+                                </mat-icon>
+                            </button>
+                        </div>
+                    </header>
+                    <!-- / HEADER UNIVERSITY WORK HISTORY INFORMATION -->
+
+                    <div class="content"
+                         *ngIf="editEducation !== true">
+                        <div class="info-line">
+                            <app-user-view-education-info [userEducationId]=0
+                                                          (refreshParentView)="refreshFromChanging()">
+                            </app-user-view-education-info>
+                        </div>
+                    </div>
+
+                    <!-- TEACHER EDUCATION HISTORY VIEW -->
+                    <div class="content">
+                        <div class="info-line"
+                             *ngFor="let userEducation of userEducationList; let i = index">
+                            <app-user-view-education-info [userEducationId]=userEducation.id
+                                                          (refreshParentView)="refreshFromChanging()">
+                            </app-user-view-education-info>
+                        </div>
+
+                    </div>
+                    <!-- / TEACHER EDUCATION HISTORY VIEW -->
+
+                </div>
+                <!-- / TEACHER EDUCATION HISTORY INFORMATION CONTENT -->
+
+            </div>
+            <!-- / USER INFORMATION -->
+
+            <!-- TEACHERS'S PUBLICATION -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="50"
+                 fxFlex.gt-md="40">
+
+                <div *ngIf="myProfileStat"
+                     class="profile-box friends"
+                     fxLayout="column">
+
+                    <header fxLayout="row"
+                            fxLayoutAlign="space-between center">
+                        <img class="avatar"
+                             [src]="profilePhoto | secure | async">
+                        <button mat-button
+                                class="button-create-publication"
+                                aria-label="create"
+                                (click)="createNewPublication()">
+                            {{'USER_INFORMATION_TEACHER_VIEW.CREATE_PUBLICATION'| translate}}
+                        </button>
+                    </header>
+
+                </div>
+
+                <div>
+                    <app-university-publication-view-list
+                        [userId]="userId"
+                        [changeEngine]="changeEngine">
+                    </app-university-publication-view-list>
+                </div>
+
+            </div>
+            <!-- / TEACHERS'S PUBLICATION -->
+
+            <!-- FOLLOWING & FOLLOWERS CONTENT -->
+            <div class="about-sidebar"
+                 fxLayout="column"
+                 fxFlex="100"
+                 fxFlex.gt-sm="50"
+                 fxFlex.gt-md="30">
+
+                <!-- FOLLOWERS -->
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header class="h1 name border-bottom"
+                            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <div class="h2 info-line university-name">
+                            {{'USER_INFORMATION_TEACHER_VIEW.FOLLOWERS'| translate}}
+                        </div>
+                    </header>
+
+                    <!-- FOLLOWERS LIST VIEW -->
+                    <div class="content">
+
+                        <app-follower-list [userId]="userId">
+                        </app-follower-list>
+
+                    </div>
+                    <!-- / FOLLOWERS LIST VIEW -->
+
+                </div>
+                <!-- / FOLLOWERS -->
+
+                <!-- FOLLOWING -->
+                <div class="profile-box info-box general"
+                     fxLayout="column">
+
+                    <header class="h1 name border-bottom"
+                            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <div class="h2 info-line university-name">
+                            {{'USER_INFORMATION_TEACHER_VIEW.FOLLOWING'| translate}}
+                        </div>
+                    </header>
+
+                    <!-- FOLLOWING LIST VIEW -->
+                    <div class="content">
+
+                        <app-following-list [userId]="userId">
+                        </app-following-list>
+
+                    </div>
+                    <!-- / FOLLOWING LIST VIEW -->
+
+                </div>
+                <!-- / FOLLOWING -->
+
+            </div>
+            <!-- / FOLLOWING & FOLLOWERS CONTENT -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

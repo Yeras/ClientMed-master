@@ -1,0 +1,71 @@
+<div class="actions"
+     fxLayout="row"
+     [@animate]="{value:'*',params:{delay:'200ms'}}">
+
+    <!-- ACHIEVEMENT CREATE INFO -->
+    <div class="group">
+        <br>
+        <div>
+
+            <form name="registerForm"
+                  [formGroup]="registerForm"
+                  novalidate>
+
+                <div>
+                    <!-- ACHIEVEMENT NAME -->
+                    <mat-form-field class="form-width"
+                                    appearance="outline">
+                        <mat-label>
+                            {{'ACHIEVEMENT.ACHIEVEMENT_NAME'| translate}}
+                        </mat-label>
+                        <input matInput
+                               type="text"
+                               formControlName="name"
+                               [(ngModel)]="achievementName">
+                        <mat-icon matSuffix
+                                  class="secondary-text">
+                            public
+                        </mat-icon>
+                        <mat-error>
+                            {{'ACHIEVEMENT.ACHIEVEMENT_NAME_IS_REQUIRED'| translate}}
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- ACHIEVEMENT NAME -->
+                </div>
+
+                <input
+                    hidden
+                    type="file"
+                    #uploader
+                    (change)="selectFile($event)"
+                    accept="image/*"/>
+                <button mat-icon-button
+                        class="choose-picture-green"
+                        (click)="uploader.click()">
+                    <mat-icon class="correct-color">
+                        insert_photo
+                    </mat-icon>
+                    <span *ngIf="fileName !== ''">
+                        {{fileName}}
+                    </span>
+                </button>
+
+                <div *ngIf="checkFile">
+                    <button mat-raised-button
+                            color="accent"
+                            class="submit-button"
+                            aria-label="CREATE UNIVERSITY ACCOUNT"
+                            [disabled]="registerForm.invalid"
+                            (click)="createAchievement()">
+                        {{'ACHIEVEMENT.CREATE_NEW_ACHIEVEMENT'| translate}}
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <!-- ACHIEVEMENT CREATE INFO -->
+
+</div>

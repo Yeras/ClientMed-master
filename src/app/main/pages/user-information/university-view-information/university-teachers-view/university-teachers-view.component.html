@@ -1,0 +1,42 @@
+<div class="group border-bottom"
+     fxLayout="row"
+     fxLayoutAlign="space-between center"
+     *ngFor="let teacherInfo of teacherInformationList">
+
+
+    <div fxLayout="row"
+         fxLayoutAlign="start center">
+
+        <div class="logo">
+            <a [routerLink]="'/user-information/' + teacherInfo.userId">
+                <img class="avatar"
+                     [src]="('/picture/file/' + teacherInfo.userId) | secure | async">
+<!--                     [src]="('http://localhost:8700/picture/file/' + teacherInfo.userId) | secure | async">-->
+            </a>
+        </div>
+
+        <div>
+            <a [routerLink]="'/user-information/' + teacherInfo.userId">
+                <div class="name">
+                    {{teacherInfo.lastName + ' ' + teacherInfo.firstName}}
+                </div>
+                <div class="category">
+                    {{teacherInfo.gradeName + ' = ' + teacherInfo.grade}}
+                </div>
+            </a>
+
+            <div class="members">
+                {{'USER_INFORMATION_UNIVERSITY_VIEW.GRADES'| translate}}{{teacherInfo.userQuantity}}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div fxLayoutAlign="end end">
+    <a [routerLink]="'/university-teachers/' + universityId">
+        <button mat-raised-button>
+            {{'USER_INFORMATION_UNIVERSITY_VIEW.TEACHERS'| translate}}{{'(' + collectionSize + ')'}}
+        </button>
+    </a>
+</div>
